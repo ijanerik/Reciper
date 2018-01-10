@@ -2,6 +2,56 @@
 
 ## Belangrijke calls per scherm:
 ![](docs/sketch_design.jpg)
+#### Inloggen
+- FirebaseAuth
+
+#### Home boodschappen
+- GroceryModel.allCustom()
+- PlannerModel.getInDays(n) -> GrocceryModel.getByRecipe()
+- GroceryModel.done() / GroceryModel.undone()
+
+#### Boodschap toevoegen
+- GroceryModel.add()
+
+#### Favorieten recepten
+- UserModel.allFavorites()
+- In edit: UserModel.removeFavorite()
+
+#### Zoeken
+Nog niks (Misschien API inbouwen die alle tags terug geeft)
+
+#### Zoek recepten resultaten
+- RecipeAPI.search()
+
+#### Los recept
+- RecipeAPI.get()
+- GroceryModel.add() (Losse boodschap uit rijtje toevoegen)
+- GroceryModel.addByRecipe() (Button toevoegen alle boodschappen)
+
+#### Inplannen
+- GroceryModel.addByRecipe() (Als automatisch toevoegen aan staat)
+- PlannerModel.add()
+
+#### Home planner
+- PlannerModel.getByDate()
+- RecipeModel.get()
+
+#### Home Instellingen
+- UserModel.getCurrentHousehold()
+
+#### Selecteer huishouden:
+- HouseHoldModel.allWithAccess()
+- UserModel.setCurrentHousehold()
+
+#### Huishouden toevoegen
+- HouseholdModel.add()
+
+#### Gedeeld met
+- HouseholdModel.allUsers()
+
+#### Met extra gebruiker delen
+- UserModel.searchWithEmail()
+- HouseholdModel.addUser()
 
 ## Belangrijke data classes:
 *All deze data classes hebben een callback en degene waarbij Firebase gemoeid is. (Alle behalve RecipeAPI) Zullen ook een parameter once? hebben om te vragen of je ze eenmalig wilt ophalen of constant wil monitoren op wijzigingen.*
@@ -39,7 +89,8 @@
 - allWithAccess() : [HouseholdEntity]
 - removeUser(HouseholdEntity, User)
 - addUser(HouseholdEntity, User)
-- addHousehold(HouseholdEntity)
+- allUsers(HouseholdEntity)
+- add(HouseholdEntity)
 
 #### UserModel
 - current() : UserEntity
