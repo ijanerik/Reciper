@@ -2,7 +2,7 @@
 
 [Code design van de app](./DESIGN.md)
 
-[API werking](./doc/API.md)
+[API werking](./docs/API.md)
 
 ## Probleem en oplossing
 In een druk leven van een student is het vaak lastig om elke avond naar de winkel te gaan om boodschappen te doen. En daarbij kost elke dag boodschappen doen extra tijd en extra geld, want je koopt vaak makkelijke (duurdere) en extra producten. Daarnaast is het fijn om na een lange dag te weten wat je gaat eten en meteen naar huis kunt om dat te gaan koken. 
