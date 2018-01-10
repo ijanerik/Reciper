@@ -4,7 +4,7 @@
 ![](docs/sketch_design.jpg)
 
 ## Belangrijke data classes:
-*All deze data classes hebben een callback en degene waarbij Firebase gemoeid is. (Alle behalve RecipeAPI) Zullen ook een parameter once? hebben om te vragen of je ze eenmalig wilt ophalen of constant wil monitoren op wijzigingen.
+*All deze data classes hebben een callback en degene waarbij Firebase gemoeid is. (Alle behalve RecipeAPI) Zullen ook een parameter once? hebben om te vragen of je ze eenmalig wilt ophalen of constant wil monitoren op wijzigingen.*
 #### RecipeAPI
 - search(term, dishType?, tags?, maxTime?) : SearchRecipeResults
 - get(api_id/SmallRecipe) : FullRecipe
