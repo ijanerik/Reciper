@@ -153,6 +153,16 @@ Voor het ophalen van recepten gebruik ik een zelfgeschreven API. Deze API heeft 
 - searched (zoekterm)
 - started (Hoeveel resultaten zijn overgeslagen)
 
+#### SmallRecipe
+- API_ID
+- Title
+- Subtitle
+- DishType
+- Tags
+- TotalTime
+- ServingsAmount
+- SmallImage (URL)
+
 #### FullRecipe (extends SmallRecipe)
 *Deze class moet alle informatie over het recept bevatten zodat de individuele pagina van het recept gevuld kan worden. Al deze informatie hoeft niet opgeslagen te worden in Firebase en kan worden opgehaald vanuit de API.*
 - API_ID
