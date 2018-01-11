@@ -12,6 +12,18 @@
 		BC7597F4200622FE000198A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F3200622FE000198A1 /* Assets.xcassets */; };
 		BC7597F7200622FE000198A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F5200622FE000198A1 /* LaunchScreen.storyboard */; };
 		BCA0D29C20062760007EE11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */; };
+		BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA0D2A420064969007EE11A /* LoginViewController.swift */; };
+		BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */; };
+		BCEE56A820077B95000D6B5F /* RecipeResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */; };
+		BCEE56AE20078218000D6B5F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */; };
+		BCEE56B0200783CD000D6B5F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */; };
+		BCEE56B2200784CA000D6B5F /* AddGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */; };
+		BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B320078F6C000D6B5F /* RecipeAPIModel.swift */; };
+		BCEE56B62007905B000D6B5F /* SearchRecipeResultsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B52007905B000D6B5F /* SearchRecipeResultsEntity.swift */; };
+		BCEE56B8200791B4000D6B5F /* SmallRecipeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B7200791B4000D6B5F /* SmallRecipeEntity.swift */; };
+		BCEE56BA200791BE000D6B5F /* FullRecipeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B9200791BE000D6B5F /* FullRecipeEntity.swift */; };
+		BCEE56BC20079220000D6B5F /* IngredientEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56BB20079220000D6B5F /* IngredientEntity.swift */; };
+		BCEE56BE20079D15000D6B5F /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */; };
 		E271E23D4679D0AE606701CB /* Pods_Reciper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575F608669035D4FEC4B6EDA /* Pods_Reciper.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +37,19 @@
 		BC7597F6200622FE000198A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC7597F8200622FE000198A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BCA0D2A3200646CE007EE11A /* Reciper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reciper.entitlements; sourceTree = "<group>"; };
+		BCA0D2A420064969007EE11A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewController.swift; sourceTree = "<group>"; };
+		BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResultsTableViewController.swift; sourceTree = "<group>"; };
+		BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceryViewController.swift; sourceTree = "<group>"; };
+		BCEE56B320078F6C000D6B5F /* RecipeAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIModel.swift; sourceTree = "<group>"; };
+		BCEE56B52007905B000D6B5F /* SearchRecipeResultsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeResultsEntity.swift; sourceTree = "<group>"; };
+		BCEE56B7200791B4000D6B5F /* SmallRecipeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallRecipeEntity.swift; sourceTree = "<group>"; };
+		BCEE56B9200791BE000D6B5F /* FullRecipeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullRecipeEntity.swift; sourceTree = "<group>"; };
+		BCEE56BB20079220000D6B5F /* IngredientEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEntity.swift; sourceTree = "<group>"; };
+		BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		BD9187AB141B840BF747F5AF /* Pods-Reciper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reciper/Pods-Reciper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +103,10 @@
 		BC7597E9200622FE000198A1 /* Reciper */ = {
 			isa = PBXGroup;
 			children = (
+				BCA0D2A3200646CE007EE11A /* Reciper.entitlements */,
+				BCA0D2A020064482007EE11A /* Entities */,
+				BCA0D29F20064469007EE11A /* Models */,
+				BCA0D29D20064459007EE11A /* ViewControllers */,
 				BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */,
 				BC7597EA200622FE000198A1 /* AppDelegate.swift */,
 				BC7597F0200622FE000198A1 /* Main.storyboard */,
@@ -86,6 +115,39 @@
 				BC7597F8200622FE000198A1 /* Info.plist */,
 			);
 			path = Reciper;
+			sourceTree = "<group>";
+		};
+		BCA0D29D20064459007EE11A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BCA0D2A420064969007EE11A /* LoginViewController.swift */,
+				BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */,
+				BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */,
+				BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */,
+				BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */,
+				BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */,
+				BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BCA0D29F20064469007EE11A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BCEE56B320078F6C000D6B5F /* RecipeAPIModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BCA0D2A020064482007EE11A /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				BCEE56B52007905B000D6B5F /* SearchRecipeResultsEntity.swift */,
+				BCEE56B7200791B4000D6B5F /* SmallRecipeEntity.swift */,
+				BCEE56B9200791BE000D6B5F /* FullRecipeEntity.swift */,
+				BCEE56BB20079220000D6B5F /* IngredientEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +186,11 @@
 					BC7597E6200622FE000198A1 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -212,6 +279,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCEE56BA200791BE000D6B5F /* FullRecipeEntity.swift in Sources */,
+				BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */,
+				BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */,
+				BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */,
+				BCEE56B2200784CA000D6B5F /* AddGroceryViewController.swift in Sources */,
+				BCEE56B62007905B000D6B5F /* SearchRecipeResultsEntity.swift in Sources */,
+				BCEE56BC20079220000D6B5F /* IngredientEntity.swift in Sources */,
+				BCEE56BE20079D15000D6B5F /* RecipeViewController.swift in Sources */,
+				BCEE56AE20078218000D6B5F /* SettingsTableViewController.swift in Sources */,
+				BCEE56B8200791B4000D6B5F /* SmallRecipeEntity.swift in Sources */,
+				BCEE56B0200783CD000D6B5F /* MainTabBarViewController.swift in Sources */,
+				BCEE56A820077B95000D6B5F /* RecipeResultsTableViewController.swift in Sources */,
 				BC7597EB200622FE000198A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +429,7 @@
 			baseConfigurationReference = 0B2A36B152F37805E2D3771C /* Pods-Reciper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Reciper/Reciper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 38XNJG94UX;
 				INFOPLIST_FILE = Reciper/Info.plist;
@@ -366,6 +446,7 @@
 			baseConfigurationReference = BD9187AB141B840BF747F5AF /* Pods-Reciper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Reciper/Reciper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 38XNJG94UX;
 				INFOPLIST_FILE = Reciper/Info.plist;

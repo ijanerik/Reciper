@@ -6,9 +6,11 @@ project 'Reciper.xcodeproj'
 target 'Reciper' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+  pod 'Firebase'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'GoogleSignIn'
 
   # Pods for Reciper
 
