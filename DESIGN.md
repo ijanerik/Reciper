@@ -58,6 +58,7 @@ Nog niks (Misschien API inbouwen die alle tags terug geeft)
 #### RecipeAPI
 - search(term, dishType?, tags?, maxTime?) : SearchRecipeResults
 - get(api_id/SmallRecipe) : FullRecipe
+- fetchImage(img_url/FullRecipe/SmallRecipe)
 
 #### RecipeModel
 *Moet dit model ook locaal recepten bijhouden voor sneller laden?*
