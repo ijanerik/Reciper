@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC1869FD200A91E9002E0E76 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1869FC200A91E9002E0E76 /* FavoritesTableViewController.swift */; };
 		BC7597EB200622FE000198A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7597EA200622FE000198A1 /* AppDelegate.swift */; };
 		BC7597F2200622FE000198A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F0200622FE000198A1 /* Main.storyboard */; };
 		BC7597F4200622FE000198A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F3200622FE000198A1 /* Assets.xcassets */; };
@@ -24,12 +25,21 @@
 		BCEE56BA200791BE000D6B5F /* FullRecipeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B9200791BE000D6B5F /* FullRecipeEntity.swift */; };
 		BCEE56BC20079220000D6B5F /* IngredientEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56BB20079220000D6B5F /* IngredientEntity.swift */; };
 		BCEE56BE20079D15000D6B5F /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */; };
+		BCEE56C22007ACF8000D6B5F /* AddToPlannerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56C12007ACF8000D6B5F /* AddToPlannerTableViewController.swift */; };
+		BCEE56C72008B8BE000D6B5F /* CurrentHouseholdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56C62008B8BE000D6B5F /* CurrentHouseholdTableViewController.swift */; };
+		BCEE56CA200956C6000D6B5F /* GroceryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56C9200956C6000D6B5F /* GroceryEntity.swift */; };
+		BCEE56CC200957DF000D6B5F /* PlannerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56CB200957DF000D6B5F /* PlannerEntity.swift */; };
+		BCEE56CE200A6267000D6B5F /* AddRecipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56CD200A6267000D6B5F /* AddRecipeButton.swift */; };
+		BCEE56D0200A72CC000D6B5F /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56CF200A72CC000D6B5F /* FavoriteModel.swift */; };
+		BCEE56D2200A731C000D6B5F /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56D1200A731C000D6B5F /* FirebaseModel.swift */; };
+		BCEE56D4200A73A3000D6B5F /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56D3200A73A3000D6B5F /* RecipeModel.swift */; };
 		E271E23D4679D0AE606701CB /* Pods_Reciper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575F608669035D4FEC4B6EDA /* Pods_Reciper.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B2A36B152F37805E2D3771C /* Pods-Reciper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reciper/Pods-Reciper.debug.xcconfig"; sourceTree = "<group>"; };
 		575F608669035D4FEC4B6EDA /* Pods_Reciper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC1869FC200A91E9002E0E76 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		BC7597E7200622FE000198A1 /* Reciper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7597EA200622FE000198A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7597F1200622FE000198A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,6 +60,14 @@
 		BCEE56B9200791BE000D6B5F /* FullRecipeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullRecipeEntity.swift; sourceTree = "<group>"; };
 		BCEE56BB20079220000D6B5F /* IngredientEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEntity.swift; sourceTree = "<group>"; };
 		BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		BCEE56C12007ACF8000D6B5F /* AddToPlannerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToPlannerTableViewController.swift; path = "/Users/janerik/Dropbox/KI2017/App Project/Reciper/Reciper/ViewControllers/Recipes/AddToPlannerTableViewController.swift"; sourceTree = "<absolute>"; };
+		BCEE56C62008B8BE000D6B5F /* CurrentHouseholdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentHouseholdTableViewController.swift; sourceTree = "<group>"; };
+		BCEE56C9200956C6000D6B5F /* GroceryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryEntity.swift; sourceTree = "<group>"; };
+		BCEE56CB200957DF000D6B5F /* PlannerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerEntity.swift; sourceTree = "<group>"; };
+		BCEE56CD200A6267000D6B5F /* AddRecipeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeButton.swift; sourceTree = "<group>"; };
+		BCEE56CF200A72CC000D6B5F /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		BCEE56D1200A731C000D6B5F /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
+		BCEE56D3200A73A3000D6B5F /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		BD9187AB141B840BF747F5AF /* Pods-Reciper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reciper/Pods-Reciper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +100,34 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BC1869FE200A9202002E0E76 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */,
+				BCEE56C62008B8BE000D6B5F /* CurrentHouseholdTableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BC1869FF200A9217002E0E76 /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				BCEE56C12007ACF8000D6B5F /* AddToPlannerTableViewController.swift */,
+				BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */,
+				BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */,
+				BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */,
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		BC186A00200A922A002E0E76 /* Groceries */ = {
+			isa = PBXGroup;
+			children = (
+				BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */,
+			);
+			path = Groceries;
+			sourceTree = "<group>";
+		};
 		BC7597DE200622FE000198A1 = {
 			isa = PBXGroup;
 			children = (
@@ -103,16 +149,13 @@
 		BC7597E9200622FE000198A1 /* Reciper */ = {
 			isa = PBXGroup;
 			children = (
-				BCA0D2A3200646CE007EE11A /* Reciper.entitlements */,
+				BC7597EA200622FE000198A1 /* AppDelegate.swift */,
+				BCEE56C82008B9C3000D6B5F /* Resources */,
+				BCEE56C42008B81E000D6B5F /* Application */,
+				BCEE56C32008B206000D6B5F /* Views */,
 				BCA0D2A020064482007EE11A /* Entities */,
 				BCA0D29F20064469007EE11A /* Models */,
 				BCA0D29D20064459007EE11A /* ViewControllers */,
-				BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */,
-				BC7597EA200622FE000198A1 /* AppDelegate.swift */,
-				BC7597F0200622FE000198A1 /* Main.storyboard */,
-				BC7597F3200622FE000198A1 /* Assets.xcassets */,
-				BC7597F5200622FE000198A1 /* LaunchScreen.storyboard */,
-				BC7597F8200622FE000198A1 /* Info.plist */,
 			);
 			path = Reciper;
 			sourceTree = "<group>";
@@ -120,13 +163,12 @@
 		BCA0D29D20064459007EE11A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BC186A00200A922A002E0E76 /* Groceries */,
+				BC1869FF200A9217002E0E76 /* Recipes */,
+				BC1869FE200A9202002E0E76 /* Settings */,
 				BCA0D2A420064969007EE11A /* LoginViewController.swift */,
-				BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */,
-				BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */,
 				BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */,
-				BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */,
-				BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */,
-				BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */,
+				BC1869FC200A91E9002E0E76 /* FavoritesTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -135,6 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				BCEE56B320078F6C000D6B5F /* RecipeAPIModel.swift */,
+				BCEE56CF200A72CC000D6B5F /* FavoriteModel.swift */,
+				BCEE56D1200A731C000D6B5F /* FirebaseModel.swift */,
+				BCEE56D3200A73A3000D6B5F /* RecipeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,8 +191,38 @@
 				BCEE56B7200791B4000D6B5F /* SmallRecipeEntity.swift */,
 				BCEE56B9200791BE000D6B5F /* FullRecipeEntity.swift */,
 				BCEE56BB20079220000D6B5F /* IngredientEntity.swift */,
+				BCEE56C9200956C6000D6B5F /* GroceryEntity.swift */,
+				BCEE56CB200957DF000D6B5F /* PlannerEntity.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		BCEE56C32008B206000D6B5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BCEE56CD200A6267000D6B5F /* AddRecipeButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BCEE56C42008B81E000D6B5F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BC7597F0200622FE000198A1 /* Main.storyboard */,
+				BC7597F5200622FE000198A1 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		BCEE56C82008B9C3000D6B5F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BCA0D2A3200646CE007EE11A /* Reciper.entitlements */,
+				BC7597F8200622FE000198A1 /* Info.plist */,
+				BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */,
+				BC7597F3200622FE000198A1 /* Assets.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,15 +358,24 @@
 				BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */,
 				BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */,
 				BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */,
+				BCEE56D2200A731C000D6B5F /* FirebaseModel.swift in Sources */,
+				BC1869FD200A91E9002E0E76 /* FavoritesTableViewController.swift in Sources */,
 				BCEE56B2200784CA000D6B5F /* AddGroceryViewController.swift in Sources */,
+				BCEE56CC200957DF000D6B5F /* PlannerEntity.swift in Sources */,
 				BCEE56B62007905B000D6B5F /* SearchRecipeResultsEntity.swift in Sources */,
+				BCEE56CA200956C6000D6B5F /* GroceryEntity.swift in Sources */,
 				BCEE56BC20079220000D6B5F /* IngredientEntity.swift in Sources */,
+				BCEE56CE200A6267000D6B5F /* AddRecipeButton.swift in Sources */,
 				BCEE56BE20079D15000D6B5F /* RecipeViewController.swift in Sources */,
 				BCEE56AE20078218000D6B5F /* SettingsTableViewController.swift in Sources */,
+				BCEE56C72008B8BE000D6B5F /* CurrentHouseholdTableViewController.swift in Sources */,
+				BCEE56D4200A73A3000D6B5F /* RecipeModel.swift in Sources */,
 				BCEE56B8200791B4000D6B5F /* SmallRecipeEntity.swift in Sources */,
 				BCEE56B0200783CD000D6B5F /* MainTabBarViewController.swift in Sources */,
 				BCEE56A820077B95000D6B5F /* RecipeResultsTableViewController.swift in Sources */,
 				BC7597EB200622FE000198A1 /* AppDelegate.swift in Sources */,
+				BCEE56D0200A72CC000D6B5F /* FavoriteModel.swift in Sources */,
+				BCEE56C22007ACF8000D6B5F /* AddToPlannerTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

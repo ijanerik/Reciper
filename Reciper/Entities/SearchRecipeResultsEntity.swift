@@ -1,5 +1,5 @@
 //
-//  SearchRecipeResults.swift
+//  SearchRecipeResultsEntity.swift
 //  Reciper
 //
 //  Created by Jan Erik van Woerden on 11-01-18.

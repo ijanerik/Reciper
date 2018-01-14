@@ -16,7 +16,6 @@ struct SmallRecipeEntity : Codable {
     var url : URL
     var type : String
     var image : URL?
-    var tags : [String]
     var servings : String
     
     enum CodingKeys: String, CodingKey {
@@ -26,7 +25,6 @@ struct SmallRecipeEntity : Codable {
         case type = "dish-type"
         case url
         case image = "small-image"
-        case tags
         case servings
     }
 }

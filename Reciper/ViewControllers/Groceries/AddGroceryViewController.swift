@@ -14,6 +14,8 @@ class AddGroceryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }

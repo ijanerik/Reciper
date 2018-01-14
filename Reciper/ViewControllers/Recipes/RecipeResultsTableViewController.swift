@@ -13,6 +13,8 @@ class RecipeResultsTableViewController: UITableViewController {
     var searchTerm : String!
     var recipes : [SmallRecipeEntity] = []
     
+    let RecipeAPI = RecipeAPIModel.shared
+    
     var doLoadMore = false
 
     override func viewDidLoad() {
@@ -33,7 +35,7 @@ class RecipeResultsTableViewController: UITableViewController {
             self.doLoadMore = true
         }
         
-        RecipeAPIModel.shared.search(searchTerm: searchTerm, startResults: startResults) { (results) in
+        self.RecipeAPI.search(searchTerm: searchTerm, startResults: startResults) { (results) in
             DispatchQueue.main.async {
                 if let results = results {
                     if moreLoading == false {

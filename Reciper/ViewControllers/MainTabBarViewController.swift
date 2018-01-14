@@ -19,7 +19,6 @@ class MainTabBarViewController: UITabBarController {
                 self.performSegue(withIdentifier: "ToLogin", sender: nil)
             }
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
