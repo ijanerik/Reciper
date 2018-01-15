@@ -17,6 +17,8 @@ class MainTabBarViewController: UITabBarController {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
                 self.performSegue(withIdentifier: "ToLogin", sender: nil)
+            } else {
+                UserModel.shared.userInit()
             }
         }
     }

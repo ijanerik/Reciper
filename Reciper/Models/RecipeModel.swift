@@ -28,13 +28,12 @@ class RecipeModel : FirebaseModel {
         self.ref.child(recipe.id).removeValue()
     }
     
-    func get(_ recipeID: String, _ observe: ObserveOrOnce, with: @escaping (SmallRecipeEntity?) -> Void) {
+    func get(_ recipeID: String, _ observe: ObserveOrOnce = .once, with: @escaping (SmallRecipeEntity?) -> Void) {
         self.check(self.ref.child(recipeID), observe) { (recipeSnap) in
             with(self.recipeFromSnapshot(recipeSnap))
         }
     }
     
-    // @ToDo Currently just works for once catch
     func getMany(_ recipeIDs: [String], with: @escaping ([SmallRecipeEntity]) -> Void) {
         var live = recipeIDs.count
         var results: [SmallRecipeEntity] = []

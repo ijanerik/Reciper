@@ -1,27 +1,37 @@
 //
-//  AddToPlannerTableViewController.swift
-//  
+//  AllHouseholdsTableViewController.swift
+//  Reciper
 //
-//  Created by Jan Erik van Woerden on 11-01-18.
+//  Created by Jan Erik van Woerden on 15-01-18.
+//  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //
 
 import UIKit
 
-class AddToPlannerTableViewController: UITableViewController {
+class AllHouseholdsTableViewController: UITableViewController {
 
+    var userModel: UserModel! = nil
+    var results: [HouseholdEntity] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        userModel = UserModel.shared
+        
+        userModel.allHouseholds { (results) in
+            self.results = results
+            self.tableView.reloadData()
+        }
+        
+        initUI()
+    }
+    
+    func initUI() {
+        let addButton =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressedAddButton(sender:)))
+        navigationItem.rightBarButtonItem = addButton
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func pressedAddButton(sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "ToNewHousehold", sender: self)
     }
 
     // MARK: - Table view data source
@@ -36,9 +46,6 @@ class AddToPlannerTableViewController: UITableViewController {
         return 0
     }
 
-    @IBAction func pressedCancel(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

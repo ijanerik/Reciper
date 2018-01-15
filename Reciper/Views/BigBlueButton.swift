@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddRecipeButton: UIButton {
+class BigBlueButton: UIButton {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
