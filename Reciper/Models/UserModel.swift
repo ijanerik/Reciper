@@ -22,6 +22,7 @@ class UserModel : FirebaseModel {
         householdModel = HouseholdModel.shared
         
         self.ref = self.db.reference(withPath: "users").child(user.uid)
+        self.ref.keepSynced(true)
     }
     
     func userInit() {

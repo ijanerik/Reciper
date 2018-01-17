@@ -9,43 +9,71 @@
 import UIKit
 
 class PlannerTableViewController: UITableViewController {
+    
+    let dateFormatter = DateFormatter()
 
+    var daysLoaded = 0
+    
+    var plannerModel: PlannerModel! = nil
+    
+    var results: [[PlannerEntity]] = []
+    var days: [Date] = []
+    
+    var doLoadMore = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        dateFormatter.dateStyle = .long
+        dateFormatter.locale = Locale(identifier: "nl_NL")
+        
+        tableView.showsVerticalScrollIndicator = false
+        
+        loadMoreDays()
+        
+        plannerModel = PlannerModel.shared
+        
+        plannerModel.all(.observe) { (results) in
+            print(results)
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return daysLoaded
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return results[section].count + 1
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return dateFormatter.string(from: days[section])
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddRecipeCell", for: indexPath)
+        
+        //RecipeCell
 
         return cell
     }
-    */
+    
+    func loadMoreDays() {
+        let loadDays = 20
+        
+        let day = 60*60*24
+        let today = Calendar.current.startOfDay(for: Date())
+        
+        for _ in 0..<loadDays {
+            self.days.append(today.addingTimeInterval(TimeInterval(day*self.daysLoaded)))
+            self.results.append([])
+            self.daysLoaded += 1
+        }
+        
+        tableView.reloadData()
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -66,21 +94,17 @@ class PlannerTableViewController: UITableViewController {
         }    
     }
     */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    // Check if the view is low enough to load more recipes
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Distance from bottom
+        let distance : CGFloat = 100
+        
+        if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height - distance
+            && scrollView.contentSize.height > 0 && self.doLoadMore == false) {
+            self.loadMoreDays()
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation

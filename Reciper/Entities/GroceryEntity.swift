@@ -10,24 +10,17 @@ import UIKit
 import Firebase
 
 struct GroceryEntity : Codable {
-    var date : Date
+    var title : String
+    var plannerID : String
     var recipeID : String
-    var groceryIDs : [String]
+    var done : Bool
     
     enum CodingKeys: String, CodingKey {
-        case date
+        case title
+        case plannerID
         case recipeID
-        case groceryIDs
+        case done
     }
     
-    func getPlanner() -> PlannerEntity? {
-        return nil
-        // @TODO
-    }
-    
-    func getRecipe() -> SmallRecipeEntity? {
-        return nil
-        // @TODO
-    }
 }
 

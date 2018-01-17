@@ -10,26 +10,14 @@ import UIKit
 import Firebase
 
 struct PlannerEntity : Codable {
-    var title : String
-    var plannerID : String
+    var id: String?
+    var date : Date
     var recipeID : String
-    var done : Bool
     
     enum CodingKeys: String, CodingKey {
-        case title
-        case plannerID
+        case id
+        case date
         case recipeID
-        case done
-    }
-    
-    func getPlanner() -> PlannerEntity? {
-        return nil
-        // @TODO
-    }
-    
-    func getRecipe() -> SmallRecipeEntity? {
-        return nil
-        // @TODO
     }
 }
 

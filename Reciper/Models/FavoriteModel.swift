@@ -21,6 +21,7 @@ class FavoriteModel : FirebaseModel {
         recipeModel = RecipeModel.shared
         
         self.ref = self.db.reference(withPath: "favorites").child(user.uid)
+        self.ref.keepSynced(true)
     }
     
     func add(_ recipe: SmallRecipeEntity) {

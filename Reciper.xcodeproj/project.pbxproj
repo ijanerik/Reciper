@@ -15,6 +15,7 @@
 		BC186A0F200CACA2002E0E76 /* AllHouseholdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A0E200CACA2002E0E76 /* AllHouseholdsTableViewController.swift */; };
 		BC186A11200CCA16002E0E76 /* AllGroceriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A10200CCA16002E0E76 /* AllGroceriesTableViewController.swift */; };
 		BC186A13200CD4C6002E0E76 /* PlannerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */; };
+		BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A15200E0EE4002E0E76 /* PlannerModel.swift */; };
 		BC7597EB200622FE000198A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7597EA200622FE000198A1 /* AppDelegate.swift */; };
 		BC7597F2200622FE000198A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F0200622FE000198A1 /* Main.storyboard */; };
 		BC7597F4200622FE000198A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F3200622FE000198A1 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		BC186A0E200CACA2002E0E76 /* AllHouseholdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHouseholdsTableViewController.swift; sourceTree = "<group>"; };
 		BC186A10200CCA16002E0E76 /* AllGroceriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroceriesTableViewController.swift; sourceTree = "<group>"; };
 		BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTableViewController.swift; sourceTree = "<group>"; };
+		BC186A15200E0EE4002E0E76 /* PlannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerModel.swift; sourceTree = "<group>"; };
 		BC7597E7200622FE000198A1 /* Reciper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7597EA200622FE000198A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7597F1200622FE000198A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				BCEE56D3200A73A3000D6B5F /* RecipeModel.swift */,
 				BC186A01200C8A81002E0E76 /* HouseholdModel.swift */,
 				BC186A05200C8C87002E0E76 /* UserModel.swift */,
+				BC186A15200E0EE4002E0E76 /* PlannerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 			files = (
 				BCEE56BA200791BE000D6B5F /* FullRecipeEntity.swift in Sources */,
 				BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */,
+				BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */,
 				BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */,
 				BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */,
 				BCEE56D2200A731C000D6B5F /* FirebaseModel.swift in Sources */,

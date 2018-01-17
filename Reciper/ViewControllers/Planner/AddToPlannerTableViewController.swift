@@ -9,7 +9,11 @@ import UIKit
 
 class AddToPlannerTableViewController: UITableViewController {
 
+    var plannerModel: PlannerModel! = nil
+    
     let dateFormatter = DateFormatter()
+    
+    var recipe: SmallRecipeEntity? = nil
     
     var currentDate = Calendar.current.startOfDay(for: Date()).addingTimeInterval(TimeInterval(0))
     var datePickerDate = Calendar.current.startOfDay(for: Date()).addingTimeInterval(TimeInterval(0))
@@ -19,6 +23,9 @@ class AddToPlannerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        plannerModel = PlannerModel.shared
+        
         dates = get7NextDays()
         dateFormatter.dateStyle = .long
         dateFormatter.locale = Locale(identifier: "nl_NL")
@@ -36,6 +43,12 @@ class AddToPlannerTableViewController: UITableViewController {
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         print(currentDate)
+        
+        if let recipe = self.recipe {
+            let planner = PlannerEntity(id: nil, date: currentDate, recipeID: recipe.id)
+            let _ = plannerModel.add(planner)
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
