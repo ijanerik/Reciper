@@ -14,8 +14,8 @@ class RecipeViewController: UIViewController {
     let favoritesModel = FavoriteModel.shared
     let recipeModel = RecipeModel.shared
     
-    var smallRecipe : SmallRecipeEntity!
-    var fullRecipe : FullRecipeEntity?
+    var smallRecipe: SmallRecipeEntity!
+    var fullRecipe: FullRecipeEntity?
     
     var isFavorite = false
     
@@ -27,6 +27,12 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var portionsLabel: UILabel!
     @IBOutlet weak var preperationsText: UITextView!
+    
+    
+    @IBOutlet weak var preperationHeight: NSLayoutConstraint!
+    @IBOutlet weak var ingredientsHeight: NSLayoutConstraint!
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -102,6 +108,9 @@ class RecipeViewController: UIViewController {
         } else {
             favoriteButton.tintColor = UIColor.blue
         }
+        
+        self.preperationHeight.constant = 0
+        self.preperationHeight.constant = preperationsText.contentSize.height
     }
     
     @objc func pressedFavoriteButton(sender: UIBarButtonItem) {

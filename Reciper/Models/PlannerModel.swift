@@ -13,6 +13,8 @@ class PlannerModel : FirebaseModel {
     static let shared = PlannerModel()
     
     var user: User!
+    var recipeModel: RecipeModel! = nil
+    var userModel: UserModel! = nil
     
     let dateFormatter = DateFormatter()
     
@@ -21,14 +23,17 @@ class PlannerModel : FirebaseModel {
         
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
+        recipeModel = RecipeModel.shared
+        userModel = UserModel.shared
+        
         user = Auth.auth().currentUser!
-        self.ref = self.db.reference(withPath: "planner").child(user.uid)
+        self.ref = self.db.reference(withPath: "planner")
     }
     
     func add(_ planner: PlannerEntity) -> String {
         var newPlanner = planner
         let dateShort = dateFormatter.string(from: newPlanner.date)
-        let dateRef = self.ref.child(dateShort)
+        let dateRef = self.ref.child(userModel.currentHouseholdID()!).child(dateShort)
         let plannerRef = dateRef.childByAutoId()
         newPlanner.id = plannerRef.key
         
@@ -38,19 +43,14 @@ class PlannerModel : FirebaseModel {
     
     func remove(_ planner: PlannerEntity) {
         if let id = planner.id {
-            let dateShort = "09-10-1995"
-            self.ref.child(dateShort).child(id).removeValue()
+            let dateShort = dateFormatter.string(from: planner.date)
+            self.ref.child(userModel.currentHouseholdID()!).child(dateShort).child(id).removeValue()
         }
     }
+
     
-    func get(_ plannerID: String, _ observe: ObserveOrOnce, with: @escaping (PlannerEntity?) -> Void) {
-        self.check(self.ref.child(plannerID), observe) { (plannerSnap) in
-            with(self.plannerFromSnapshot(plannerSnap))
-        }
-    }
-    
-    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[PlannerEntity]])->()) {
-        self.check(self.ref, observe) { (results) in
+    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[PlannerEntity]])->()) -> UInt {
+         return self.check(self.ref.child(userModel.currentHouseholdID()!), observe) { (results) in
             let allDatesStrings = Array((results.value as? [String:Any] ?? [:]).keys)
             
             var allDates: [String:[PlannerEntity]] = [:]
@@ -74,6 +74,29 @@ class PlannerModel : FirebaseModel {
         }
     }
     
+    func allWithRecipe(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[PlannerEntity]])->()) -> UInt {
+        return self.all(observe) { (results) in
+            var returnResults: [String:[PlannerEntity]] = [:]
+            var left = 0
+            for (date, planners) in results {
+                returnResults[date] = []
+                for planner in planners {
+                    left += 1
+                    self.recipeModel.get(planner.recipeID, with: { (recipe) in
+                        var newPlanner = planner
+                        newPlanner.recipe = recipe
+                        
+                        returnResults[date]!.append(newPlanner)
+                        left -= 1
+                        if left == 0 {
+                            with(returnResults)
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
     
     func plannerFromSnapshot(_ snapshot: DataSnapshot) -> PlannerEntity? {
         guard let dict = snapshot.value as? [String: AnyObject] else {
@@ -82,7 +105,9 @@ class PlannerModel : FirebaseModel {
         
         return PlannerEntity(id: dict["id"] as? String,
                              date: dateFormatter.date(from: dict["date"] as! String)!,
-                             recipeID: dict["recipe"] as! String)
+                             recipeID: dict["recipe"] as! String,
+                             recipe: nil)
+
     }
     
     

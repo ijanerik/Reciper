@@ -33,7 +33,7 @@ class FavoriteModel : FirebaseModel {
     }
     
     func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String])->()) {
-        self.check(self.ref, observe) { (results) in
+        _ = self.check(self.ref, observe) { (results) in
             let favorites = results.value as? [String: Bool] ?? [:]
             with(Array(favorites.keys))
         }
@@ -46,7 +46,7 @@ class FavoriteModel : FirebaseModel {
     }
     
     func get(_ recipe: SmallRecipeEntity, _ observe: ObserveOrOnce = .once, with: @escaping (Bool)->()) {
-        self.check(self.ref.child(recipe.id), observe) { (results) in
+        _ = self.check(self.ref.child(recipe.id), observe) { (results) in
             if let bool = results.value as? Bool, bool == true {
                 with(true)
             } else {

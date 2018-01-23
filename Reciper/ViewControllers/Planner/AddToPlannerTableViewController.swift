@@ -10,6 +10,7 @@ import UIKit
 class AddToPlannerTableViewController: UITableViewController {
 
     var plannerModel: PlannerModel! = nil
+    var recipeModel: RecipeModel! = nil
     
     let dateFormatter = DateFormatter()
     
@@ -25,6 +26,7 @@ class AddToPlannerTableViewController: UITableViewController {
         super.viewDidLoad()
         
         plannerModel = PlannerModel.shared
+        recipeModel = RecipeModel.shared
         
         dates = get7NextDays()
         dateFormatter.dateStyle = .long
@@ -42,11 +44,10 @@ class AddToPlannerTableViewController: UITableViewController {
     
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        print(currentDate)
-        
         if let recipe = self.recipe {
-            let planner = PlannerEntity(id: nil, date: currentDate, recipeID: recipe.id)
-            let _ = plannerModel.add(planner)
+            let planner = PlannerEntity(id: nil, date: currentDate, recipeID: recipe.id, recipe: nil)
+            let _ = self.plannerModel.add(planner)
+            self.recipeModel.add(recipe)
         }
         
         self.dismiss(animated: true, completion: nil)

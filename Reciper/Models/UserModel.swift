@@ -16,6 +16,8 @@ class UserModel : FirebaseModel {
     
     var householdModel: HouseholdModel!
     
+    var householdChanger = Event<String>()
+    
     override init() {
         super.init()
         user = Auth.auth().currentUser!
@@ -44,7 +46,7 @@ class UserModel : FirebaseModel {
     
     // Check if this is the users first signin
     func userExists(with: @escaping (Bool) -> ()) {
-        self.check(self.ref, .once) { (userSnap) in
+        _ = self.check(self.ref, .once) { (userSnap) in
             with(userSnap.exists())
         }
     }
@@ -56,11 +58,12 @@ class UserModel : FirebaseModel {
     func setCurrentHousehold(_ householdID: String?) {
         if let id = householdID {
             UserDefaults.standard.set(id, forKey:"currentHousehold")
+            householdChanger.emit(object: id)
         }
     }
     
     func allHouseholdIDs(_ observe: ObserveOrOnce = .once, with: @escaping ([String]) -> ()) {
-        self.check(self.ref.child("households"), observe) { (results) in
+        _ = self.check(self.ref.child("households"), observe) { (results) in
             let households = results.value as? [String: Bool] ?? [:]
             with(Array(households.keys))
         }
@@ -70,6 +73,13 @@ class UserModel : FirebaseModel {
         self.allHouseholdIDs(observe) { (results) in
             self.householdModel.getMany(results, with: with)
         }
+    }
+    
+    func addHouseholdChanger(_ with: @escaping (String) -> ()) {
+        if let id = self.currentHouseholdID() {
+            with(id)
+        }
+        householdChanger.listen(handler: with)
     }
     
 }

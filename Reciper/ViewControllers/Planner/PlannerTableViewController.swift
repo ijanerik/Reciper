@@ -8,44 +8,63 @@
 
 import UIKit
 
-class PlannerTableViewController: UITableViewController {
+class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelegate {
     
     let dateFormatter = DateFormatter()
-
-    var daysLoaded = 0
+    let dateFormatterSmall = DateFormatter()
     
     var plannerModel: PlannerModel! = nil
+    var userModel: UserModel! = nil
     
-    var results: [[PlannerEntity]] = []
+    // Variables for displaying data
+    var results: [String: [PlannerEntity]] = [:]
     var days: [Date] = []
+    var daysLoaded = 0
     
+    // Do we need to load more days?
     var doLoadMore = false
+    
+    // For correctly remove old plannerHandler after changing household.
+    var plannerObserverHandler: UInt = 0
+    var oldHouseholdID: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dateFormatter.dateStyle = .long
         dateFormatter.locale = Locale(identifier: "nl_NL")
+        dateFormatterSmall.dateFormat = "dd-MM-yyyy"
         
         tableView.showsVerticalScrollIndicator = false
         
         loadMoreDays()
         
         plannerModel = PlannerModel.shared
+        userModel = UserModel.shared
         
-        plannerModel.all(.observe) { (results) in
-            print(results)
+        userModel.addHouseholdChanger { (householdID) in
+            if let id = self.oldHouseholdID {
+                self.plannerModel.ref.child(id).removeObserver(withHandle: self.plannerObserverHandler)
+            }
+            
+            self.oldHouseholdID = householdID
+            self.plannerObserverHandler = self.plannerModel.allWithRecipe(.observe) { (results) in
+                self.results = results
+                self.tableView.reloadData()
+            }
         }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return daysLoaded
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return results[section].count + 1
+        if let results = self.results[self.dateFormatterSmall.string(from: self.days[section])] {
+            return results.count + 1
+        } else {
+            return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -53,11 +72,23 @@ class PlannerTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddRecipeCell", for: indexPath)
-        
-        //RecipeCell
-
-        return cell
+        if let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
+            if indexPath.row < results.count {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath)
+                let correctCell = cell as! PlannerRecipeTableViewCell
+                correctCell.delegate = self
+                if let recipe = results[indexPath.row].recipe {
+                    correctCell.update(recipe)
+                }
+                return correctCell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AddRecipeCell", for: indexPath)
+                return cell
+            }
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddRecipeCell", for: indexPath)
+            return cell
+        }
     }
     
     func loadMoreDays() {
@@ -68,32 +99,37 @@ class PlannerTableViewController: UITableViewController {
         
         for _ in 0..<loadDays {
             self.days.append(today.addingTimeInterval(TimeInterval(day*self.daysLoaded)))
-            self.results.append([])
             self.daysLoaded += 1
         }
         
         tableView.reloadData()
     }
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        if let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
+            if indexPath.row < results.count {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
     }
-    */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            if let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
+                if indexPath.row < results.count {
+                    self.plannerModel.remove(results[indexPath.row])
+                }
+            }
+        }
     }
-    */
     
     // Check if the view is low enough to load more recipes
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -106,14 +142,28 @@ class PlannerTableViewController: UITableViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "ToSingleRecipe") {
+            let recipeController = segue.destination as! RecipeViewController
+            if let results = self.results[self.dateFormatterSmall.string(from: self.days[tableView.indexPathForSelectedRow!.section])] {
+                if tableView.indexPathForSelectedRow!.row < results.count {
+                    recipeController.smallRecipe = results[tableView.indexPathForSelectedRow!.row].recipe!
+                }
+            }
+        } else if segue.identifier == "AddRecipeToGroceries" {
+            let addGroceriesController = segue.destination as! AddGroceriesFromRecipeTableViewController
+            let result = sender as! PlannerEntity
+            addGroceriesController.planner = result
+        }
     }
-    */
+    
+    func addToGroceriesTapped(sender: PlannerRecipeTableViewCell) {
+        if let indexPath = tableView.indexPath(for: sender),
+            let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
+            performSegue(withIdentifier: "AddRecipeToGroceries", sender: results[indexPath.row])
+        }
+    }
+
 
 }

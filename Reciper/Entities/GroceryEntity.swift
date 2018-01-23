@@ -9,18 +9,13 @@
 import UIKit
 import Firebase
 
-struct GroceryEntity : Codable {
-    var title : String
-    var plannerID : String
-    var recipeID : String
-    var done : Bool
-    
-    enum CodingKeys: String, CodingKey {
-        case title
-        case plannerID
-        case recipeID
-        case done
-    }
-    
+struct GroceryEntity {
+    var id: String?
+    var title: String
+    var plannerID: String?
+    var planner: PlannerEntity?
+    var recipeID: String?
+    var recipe: SmallRecipeEntity?
+    var done: Bool
 }
 

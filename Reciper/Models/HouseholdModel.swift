@@ -50,7 +50,7 @@ class HouseholdModel : FirebaseModel {
     }
     
     func get(_ householdID: String, _ observe: ObserveOrOnce, with: @escaping (HouseholdEntity?) -> Void) {
-        self.check(self.ref.child(householdID), observe) { (householdSnap) in
+        _ = self.check(self.ref.child(householdID), observe) { (householdSnap) in
             with(self.householdFromSnapshot(householdSnap))
         }
     }

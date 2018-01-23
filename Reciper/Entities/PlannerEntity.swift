@@ -13,6 +13,7 @@ struct PlannerEntity : Codable {
     var id: String?
     var date : Date
     var recipeID : String
+    var recipe: SmallRecipeEntity? = nil
     
     enum CodingKeys: String, CodingKey {
         case id

@@ -10,10 +10,14 @@ import UIKit
 
 class AddGroceryViewController: UIViewController {
 
+    var groceriesModel: GroceriesModel! = nil
+    
     @IBOutlet weak var searchBar: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        groceriesModel = GroceriesModel.shared
         
         searchBar.becomeFirstResponder()
 
@@ -30,6 +34,17 @@ class AddGroceryViewController: UIViewController {
     }
     
     @IBAction func pressedDone(_ sender: UIBarButtonItem) {
+        let grocery = GroceryEntity(id: nil,
+                                    title: searchBar.text!,
+                                    plannerID: nil,
+                                    planner: nil,
+                                    recipeID: nil,
+                                    recipe: nil,
+                                    done: false
+        )
+        
+        _ = self.groceriesModel.add(grocery)
+        
         self.dismiss(animated: true, completion: nil)
     }
     

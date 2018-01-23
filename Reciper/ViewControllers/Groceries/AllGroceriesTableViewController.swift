@@ -9,9 +9,47 @@
 import UIKit
 
 class AllGroceriesTableViewController: UITableViewController {
-
+    var groceriesModel: GroceriesModel! = nil
+    var userModel: UserModel! = nil
+    var recipeModel: RecipeModel! = nil
+    
+    // For correctly remove old plannerHandler after changing household.
+    var groceriesObserverHandler: UInt = 0
+    var oldHouseholdID: String? = nil
+    
+    // Boodschappen en hun recepten
+    var groceries: [String: [GroceryEntity]] = ["":[]]
+    var recipes: [String: SmallRecipeEntity] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        groceriesModel = GroceriesModel.shared
+        userModel = UserModel.shared
+        recipeModel = RecipeModel.shared
+        
+        userModel.addHouseholdChanger { (householdID) in
+            if let id = self.oldHouseholdID {
+                self.groceriesModel.ref.child(id).removeObserver(withHandle: self.groceriesObserverHandler)
+            }
+            
+            self.groceries = ["":[]]
+            self.recipes = [:]
+            
+            self.oldHouseholdID = householdID
+            self.groceriesObserverHandler = self.groceriesModel.all(.observe) { (results) in
+                self.groceries = results
+                let plannerIDs = Array(results.keys).filter { $0 != "" }
+                let recipeIDs = plannerIDs.map({ results[$0]?[0].recipeID ?? "" }).filter { $0 != "" }
+                self.recipeModel.getMany(recipeIDs, with: { (recipeResults) in
+                    for recipe in recipeResults {
+                        self.recipes[recipe.id] = recipe
+                    }
+                    
+                    self.tableView.reloadData()
+                })
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,68 +60,108 @@ class AllGroceriesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return groceries.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if section == 0 {
+            return self.groceries[""]!.count + 1 // (Toevoegen button?)
+        } else {
+            let sectionName = getSectionNameByIndex(section)
+            return self.groceries[sectionName]?.count ?? 0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Eigen boodschappen"
+        } else {
+            let sectionName = getSectionNameByIndex(section)
+            return self.recipes[self.groceries[sectionName]?[0].recipeID ?? ""]?.title ?? "-"
+        }
+    }
+    
+    func getSectionNameByIndex(_ sectionIndex: Int) -> String {
+        if sectionIndex == 0 {
+            return ""
+        } else {
+            let sections = Array(self.groceries.keys).filter { $0 != "" }
+            let sectionName = sections[sectionIndex - 1]
+            return sectionName
+        }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let sectionName = self.getSectionNameByIndex(indexPath.section)
+        if sectionName == "" && groceries[""]?.count ?? 0 <= indexPath.row {
+            return tableView.dequeueReusableCell(withIdentifier: "AddGroceryCell", for: indexPath)
+        }
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroceryCell", for: indexPath)
+        guard let grocery = self.groceries[sectionName]?[indexPath.row] else {
+            return cell
+        }
+        
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: grocery.title)
+        if grocery.done == true {
+            attributeString.addAttribute(.strikethroughStyle,
+                                     value: 2,
+                                     range: NSMakeRange(0, attributeString.length))
+        }
+        
+        cell.textLabel?.attributedText = attributeString
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sectionName = self.getSectionNameByIndex(indexPath.section)
+        
+        if sectionName == "" && groceries[""]?.count ?? 0 <= indexPath.row {
+            return
+        }
+        
+        guard let grocery = self.groceries[sectionName]?[indexPath.row] else {
+            return
+        }
+        
+        var newGrocery = grocery
+        newGrocery.done = !newGrocery.done
+        self.groceriesModel.update(newGrocery)
+    }
+    
+    @IBAction func pressedCleaning(_ sender: UIBarButtonItem) {
+        for (_, grocies) in groceries {
+            for grocery in grocies {
+                if grocery.done == true {
+                    self.groceriesModel.remove(grocery)
+                }
+            }
+        }
+    }
+    
 
-    /*
-    // Override to support conditional editing of the table view.
+    
+    // Everything for deleting cells
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        let sectionName = self.getSectionNameByIndex(indexPath.section)
+        if sectionName == "" && groceries[""]?.count ?? 0 <= indexPath.row {
+            return false
+        } else {
+            return true
+        }
     }
-    */
 
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let sectionName = self.getSectionNameByIndex(indexPath.section)
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            guard let grocery = self.groceries[sectionName]?[indexPath.row] else {
+                return
+            }
+            
+            self.groceriesModel.remove(grocery)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

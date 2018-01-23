@@ -29,7 +29,7 @@ class RecipeModel : FirebaseModel {
     }
     
     func get(_ recipeID: String, _ observe: ObserveOrOnce = .once, with: @escaping (SmallRecipeEntity?) -> Void) {
-        self.check(self.ref.child(recipeID), observe) { (recipeSnap) in
+        _ = self.check(self.ref.child(recipeID), observe) { (recipeSnap) in
             with(self.recipeFromSnapshot(recipeSnap))
         }
     }
