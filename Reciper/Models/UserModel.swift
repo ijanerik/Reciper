@@ -30,12 +30,18 @@ class UserModel : FirebaseModel {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
                 self.user = user
+                
+                self.ref.keepSynced(false)
+                self.ref = self.db.reference(withPath: "users").child(self.user.uid)
+                self.ref.keepSynced(true)
+                
+                self.userInit()
             }
         }
     }
     
     func userInit() {
-        self.allHouseholdIDs(.once) { (households) in
+        _ = self.allHouseholdIDs(.once) { (households) in
             guard self.currentHouseholdID() == nil else {
                 return
             }
@@ -69,15 +75,15 @@ class UserModel : FirebaseModel {
         }
     }
     
-    func allHouseholdIDs(_ observe: ObserveOrOnce = .once, with: @escaping ([String]) -> ()) {
-        _ = self.check(self.ref.child("households"), observe) { (results) in
+    func allHouseholdIDs(_ observe: ObserveOrOnce = .once, with: @escaping ([String]) -> ()) -> FBObserver {
+        return self.check(self.ref.child("households"), observe) { (results) in
             let households = results.value as? [String: Bool] ?? [:]
             with(Array(households.keys))
         }
     }
     
-    func allHouseholds(_ observe: ObserveOrOnce = .once, with: @escaping ([HouseholdEntity]) -> ()) {
-        self.allHouseholdIDs(observe) { (results) in
+    func allHouseholds(_ observe: ObserveOrOnce = .once, with: @escaping ([HouseholdEntity]) -> ()) -> FBObserver {
+        return self.allHouseholdIDs(observe) { (results) in
             self.householdModel.getMany(results, with: with)
         }
     }

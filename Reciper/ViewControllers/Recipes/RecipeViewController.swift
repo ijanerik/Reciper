@@ -47,7 +47,7 @@ class RecipeViewController: UIViewController {
         loadAndDisplayRecipe()
         updateUI()
         
-        self.favoritesModel.get(self.smallRecipe, .observe) { (isFavorite) in
+        _ = self.favoritesModel.get(self.smallRecipe, .observe) { (isFavorite) in
             self.isFavorite = isFavorite
             self.updateUI()
         }

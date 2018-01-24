@@ -25,8 +25,7 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
     var doLoadMore = false
     
     // For correctly remove old plannerHandler after changing household.
-    var plannerObserverHandler: UInt = 0
-    var oldHouseholdID: String? = nil
+    var plannerObserverHandler: FBObserver?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +42,10 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         userModel = UserModel.shared
         
         userModel.addHouseholdChanger { (householdID) in
-            if let id = self.oldHouseholdID {
-                self.plannerModel.ref.child(id).removeObserver(withHandle: self.plannerObserverHandler)
-            }
+            self.results = [:]
+            self.plannerObserverHandler?.unobserve()
+            self.tableView.reloadData()
             
-            self.oldHouseholdID = householdID
             self.plannerObserverHandler = self.plannerModel.allWithRecipe(.observe) { (results) in
                 self.results = results
                 self.tableView.reloadData()

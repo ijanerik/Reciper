@@ -16,8 +16,7 @@ class AllGroceriesTableViewController: UITableViewController {
     var recipeModel: RecipeModel! = nil
     
     // For correctly remove old plannerHandler after changing household.
-    var groceriesObserverHandler: UInt = 0
-    var oldHouseholdID: String? = nil
+    var groceriesObserverHandler: FBObserver?
     
     // Boodschappen en hun recepten
     var groceries: [String: [GroceryEntity]] = ["":[]]
@@ -37,14 +36,12 @@ class AllGroceriesTableViewController: UITableViewController {
         recipeModel = RecipeModel.shared
         
         userModel.addHouseholdChanger { (householdID) in
-            if let id = self.oldHouseholdID {
-                self.groceriesModel.ref.child(id).removeObserver(withHandle: self.groceriesObserverHandler)
-            }
+            self.groceriesObserverHandler?.unobserve()
             
             self.groceries = ["":[]]
             self.recipes = [:]
+            self.tableView.reloadData()
             
-            self.oldHouseholdID = householdID
             self.groceriesObserverHandler = self.groceriesModel.all(.observe) { (results) in
                 self.groceries = results
                 let plannerIDs = Array(results.keys).filter { $0 != "" }

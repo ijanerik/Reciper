@@ -16,6 +16,7 @@
 		BC186A11200CCA16002E0E76 /* AllGroceriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A10200CCA16002E0E76 /* AllGroceriesTableViewController.swift */; };
 		BC186A13200CD4C6002E0E76 /* PlannerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */; };
 		BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A15200E0EE4002E0E76 /* PlannerModel.swift */; };
+		BC6635E320189C0F00903F8C /* FBObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6635E220189C0F00903F8C /* FBObserver.swift */; };
 		BC687C4B2015CA3000951024 /* eventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC687C4A2015CA3000951024 /* eventEmitter.swift */; };
 		BC687C4D2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC687C4C2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift */; };
 		BC687C4F201608A300951024 /* PlannerRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC687C4E201608A300951024 /* PlannerRecipeTableViewCell.swift */; };
@@ -61,6 +62,7 @@
 		BC186A10200CCA16002E0E76 /* AllGroceriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroceriesTableViewController.swift; sourceTree = "<group>"; };
 		BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTableViewController.swift; sourceTree = "<group>"; };
 		BC186A15200E0EE4002E0E76 /* PlannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerModel.swift; sourceTree = "<group>"; };
+		BC6635E220189C0F00903F8C /* FBObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBObserver.swift; sourceTree = "<group>"; };
 		BC687C4A2015CA3000951024 /* eventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eventEmitter.swift; sourceTree = "<group>"; };
 		BC687C4C2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceriesFromRecipeTableViewController.swift; sourceTree = "<group>"; };
 		BC687C4E201608A300951024 /* PlannerRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerRecipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				BC687C4A2015CA3000951024 /* eventEmitter.swift */,
 				BC9FB7FB20177BFB00152AFA /* simpleAlert.swift */,
+				BC6635E220189C0F00903F8C /* FBObserver.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */,
 				BCEE56D2200A731C000D6B5F /* FirebaseModel.swift in Sources */,
 				BC1869FD200A91E9002E0E76 /* FavoritesTableViewController.swift in Sources */,
+				BC6635E320189C0F00903F8C /* FBObserver.swift in Sources */,
 				BCEE56B2200784CA000D6B5F /* AddGroceryViewController.swift in Sources */,
 				BC186A0F200CACA2002E0E76 /* AllHouseholdsTableViewController.swift in Sources */,
 				BC687C4D2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift in Sources */,

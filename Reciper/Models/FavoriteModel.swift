@@ -32,21 +32,21 @@ class FavoriteModel : FirebaseModel {
         self.ref.child(recipe.id).removeValue()
     }
     
-    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String])->()) {
-        _ = self.check(self.ref, observe) { (results) in
+    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String])->()) -> FBObserver {
+        return self.check(self.ref, observe) { (results) in
             let favorites = results.value as? [String: Bool] ?? [:]
             with(Array(favorites.keys))
         }
     }
     
-    func allRecipes(_ observe: ObserveOrOnce = .once, with: @escaping ([SmallRecipeEntity])->()) {
-        self.all(observe) { (results) in
+    func allRecipes(_ observe: ObserveOrOnce = .once, with: @escaping ([SmallRecipeEntity])->()) -> FBObserver {
+        return self.all(observe) { (results) in
             self.recipeModel.getMany(results, with: with)
         }
     }
     
-    func get(_ recipe: SmallRecipeEntity, _ observe: ObserveOrOnce = .once, with: @escaping (Bool)->()) {
-        _ = self.check(self.ref.child(recipe.id), observe) { (results) in
+    func get(_ recipe: SmallRecipeEntity, _ observe: ObserveOrOnce = .once, with: @escaping (Bool)->()) -> FBObserver {
+        return self.check(self.ref.child(recipe.id), observe) { (results) in
             if let bool = results.value as? Bool, bool == true {
                 with(true)
             } else {

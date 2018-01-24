@@ -28,8 +28,10 @@ class RecipeModel : FirebaseModel {
         self.ref.child(recipe.id).removeValue()
     }
     
-    func get(_ recipeID: String, _ observe: ObserveOrOnce = .once, with: @escaping (SmallRecipeEntity?) -> Void) {
-        _ = self.check(self.ref.child(recipeID), observe) { (recipeSnap) in
+    func get(_ recipeID: String,
+             _ observe: ObserveOrOnce = .once,
+             with: @escaping (SmallRecipeEntity?) -> Void) -> FBObserver {
+        return self.check(self.ref.child(recipeID), observe) { (recipeSnap) in
             with(self.recipeFromSnapshot(recipeSnap))
         }
     }
@@ -39,7 +41,7 @@ class RecipeModel : FirebaseModel {
         var results: [SmallRecipeEntity] = []
         
         for id in recipeIDs {
-            self.get(id, .once, with: { (recipe) in
+            _ = self.get(id, .once, with: { (recipe) in
                 if let recipe = recipe {
                     results.append(recipe)
                 }

@@ -49,8 +49,8 @@ class HouseholdModel : FirebaseModel {
         }
     }
     
-    func get(_ householdID: String, _ observe: ObserveOrOnce, with: @escaping (HouseholdEntity?) -> Void) {
-        _ = self.check(self.ref.child(householdID), observe) { (householdSnap) in
+    func get(_ householdID: String, _ observe: ObserveOrOnce, with: @escaping (HouseholdEntity?) -> Void) -> FBObserver {
+        return self.check(self.ref.child(householdID), observe) { (householdSnap) in
             with(self.householdFromSnapshot(householdSnap))
         }
     }
@@ -60,7 +60,7 @@ class HouseholdModel : FirebaseModel {
         var results: [HouseholdEntity] = []
         
         for id in householdIDs {
-            self.get(id, .once, with: { (household) in
+            _ = self.get(id, .once, with: { (household) in
                 if let household = household {
                     results.append(household)
                 }

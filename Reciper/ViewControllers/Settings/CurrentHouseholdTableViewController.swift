@@ -18,7 +18,7 @@ class CurrentHouseholdTableViewController: UITableViewController {
 
         userModel = UserModel.shared
         
-        userModel.allHouseholds { (results) in
+        _ = userModel.allHouseholds { (results) in
             self.results = results
             self.tableView.reloadData()
         }

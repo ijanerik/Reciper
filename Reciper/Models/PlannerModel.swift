@@ -49,7 +49,7 @@ class PlannerModel : FirebaseModel {
     }
 
     
-    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[PlannerEntity]])->()) -> UInt {
+    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[PlannerEntity]])->()) -> FBObserver {
          return self.check(self.ref.child(userModel.currentHouseholdID()!), observe) { (results) in
             let allDatesStrings = Array((results.value as? [String:Any] ?? [:]).keys)
             
@@ -74,7 +74,7 @@ class PlannerModel : FirebaseModel {
         }
     }
     
-    func allWithRecipe(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[PlannerEntity]])->()) -> UInt {
+    func allWithRecipe(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[PlannerEntity]])->()) -> FBObserver {
         return self.all(observe) { (results) in
             var returnResults: [String:[PlannerEntity]] = [:]
             var left = 0
@@ -82,7 +82,7 @@ class PlannerModel : FirebaseModel {
                 returnResults[date] = []
                 for planner in planners {
                     left += 1
-                    self.recipeModel.get(planner.recipeID, with: { (recipe) in
+                    _ = self.recipeModel.get(planner.recipeID, with: { (recipe) in
                         var newPlanner = planner
                         newPlanner.recipe = recipe
                         

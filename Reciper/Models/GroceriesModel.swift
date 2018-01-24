@@ -66,7 +66,7 @@ class GroceriesModel : FirebaseModel {
     }
      */
     
-    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[GroceryEntity]])->()) -> UInt {
+    func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[GroceryEntity]])->()) -> FBObserver {
         return self.check(self.ref.child(userModel.currentHouseholdID()!), observe) { (results) in
             let allGroceries = Array((results.value as? [String:Any] ?? [:]).keys)
             

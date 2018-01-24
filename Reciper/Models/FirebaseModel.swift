@@ -19,7 +19,9 @@ class FirebaseModel {
     let db = Database.database()
     var ref: DatabaseReference!
     
-    func check(_ ref : DatabaseReference, _ observe: ObserveOrOnce = .once, with: @escaping (DataSnapshot)->()) -> UInt {
+    func check(_ ref : DatabaseReference,
+               _ observe: ObserveOrOnce = .once,
+               with: @escaping (DataSnapshot)->()) -> FBObserver {
         var handler: UInt = 0
         if observe == .observe || observe == .observeWithCache {
             handler = ref.observe(.value, with: with)
@@ -27,6 +29,6 @@ class FirebaseModel {
             ref.observeSingleEvent(of: .value, with: with)
         }
         
-        return handler
+        return FBObserver(ref: ref, handle: handler)
     }
 }

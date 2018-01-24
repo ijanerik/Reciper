@@ -12,18 +12,29 @@ class FavoritesTableViewController: UITableViewController {
     
     var favoriteModel: FavoriteModel!
     var recipeModel: RecipeModel!
+    var userModel: UserModel!
     
     var recipes: [SmallRecipeEntity] = []
+    
+    var favoritesObserverHandler: FBObserver?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         favoriteModel = FavoriteModel.shared
         recipeModel = RecipeModel.shared
+        userModel = UserModel.shared
 
-        self.favoriteModel.allRecipes(.observe) { (results) in
-            self.recipes = results
+        
+        userModel.addHouseholdChanger { (_) in
+            self.recipes = []
+            self.favoritesObserverHandler?.unobserve()
             self.tableView.reloadData()
+            
+            self.favoritesObserverHandler = self.favoriteModel.allRecipes(.observe) { (results) in
+                self.recipes = results
+                self.tableView.reloadData()
+            }
         }
     }
 

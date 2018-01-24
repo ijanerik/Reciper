@@ -26,6 +26,7 @@ class SettingsTableViewController: UITableViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            UserDefaults.standard.set(nil, forKey:"currentHousehold")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
