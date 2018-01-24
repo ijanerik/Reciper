@@ -24,6 +24,7 @@
 		BC7597F2200622FE000198A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F0200622FE000198A1 /* Main.storyboard */; };
 		BC7597F4200622FE000198A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F3200622FE000198A1 /* Assets.xcassets */; };
 		BC7597F7200622FE000198A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7597F5200622FE000198A1 /* LaunchScreen.storyboard */; };
+		BC9FB7FC20177BFB00152AFA /* simpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FB7FB20177BFB00152AFA /* simpleAlert.swift */; };
 		BCA0D29C20062760007EE11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */; };
 		BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA0D2A420064969007EE11A /* LoginViewController.swift */; };
 		BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */; };
@@ -70,6 +71,7 @@
 		BC7597F3200622FE000198A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC7597F6200622FE000198A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC7597F8200622FE000198A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC9FB7FB20177BFB00152AFA /* simpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simpleAlert.swift; sourceTree = "<group>"; };
 		BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCA0D2A3200646CE007EE11A /* Reciper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reciper.entitlements; sourceTree = "<group>"; };
 		BCA0D2A420064969007EE11A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -193,9 +195,17 @@
 				BCA0D2A020064482007EE11A /* Entities */,
 				BCA0D29F20064469007EE11A /* Models */,
 				BCA0D29D20064459007EE11A /* ViewControllers */,
-				BC687C4A2015CA3000951024 /* eventEmitter.swift */,
 			);
 			path = Reciper;
+			sourceTree = "<group>";
+		};
+		BC9FB7FA20177BE500152AFA /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				BC687C4A2015CA3000951024 /* eventEmitter.swift */,
+				BC9FB7FB20177BFB00152AFA /* simpleAlert.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		BCA0D29D20064459007EE11A /* ViewControllers */ = {
@@ -207,6 +217,7 @@
 				BC1869FE200A9202002E0E76 /* Settings */,
 				BCA0D2A420064969007EE11A /* LoginViewController.swift */,
 				BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */,
+				BC9FB7FA20177BE500152AFA /* Library */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -411,6 +422,7 @@
 				BCEE56CC200957DF000D6B5F /* PlannerEntity.swift in Sources */,
 				BC186A06200C8C87002E0E76 /* UserModel.swift in Sources */,
 				BCEE56B62007905B000D6B5F /* SearchRecipeResultsEntity.swift in Sources */,
+				BC9FB7FC20177BFB00152AFA /* simpleAlert.swift in Sources */,
 				BC186A02200C8A81002E0E76 /* HouseholdModel.swift in Sources */,
 				BCEE56CA200956C6000D6B5F /* GroceryEntity.swift in Sources */,
 				BCEE56BC20079220000D6B5F /* IngredientEntity.swift in Sources */,

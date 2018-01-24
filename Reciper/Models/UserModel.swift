@@ -25,6 +25,13 @@ class UserModel : FirebaseModel {
         
         self.ref = self.db.reference(withPath: "users").child(user.uid)
         self.ref.keepSynced(true)
+        
+        // So if you login with another account you still can loggin
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.user = user
+            }
+        }
     }
     
     func userInit() {

@@ -11,6 +11,8 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
+import FBSDKCoreKit
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
@@ -27,20 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // Configuration of Firebase and the Google login
         FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = true
+        //Database.database().isPersistenceEnabled = true
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])-> Bool {
-            return GIDSignIn.sharedInstance().handle(url,
+        let googleHandled = GIDSignIn.sharedInstance().handle(url,
                                             sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+        let facebookHandled = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, options: options)
+        return (facebookHandled || googleHandled)
     }
     
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
         if error != nil {
             print("Error")
             return
@@ -54,8 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print("Error")
                 return
             }
-            
-            print("He het werkt!")
         }
     }
     

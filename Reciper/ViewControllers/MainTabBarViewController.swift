@@ -19,6 +19,12 @@ class MainTabBarViewController: UITabBarController {
                 self.performSegue(withIdentifier: "ToLogin", sender: nil)
             } else {
                 UserModel.shared.userInit()
+                
+                if let VCs = self.viewControllers {
+                    let VC = VCs[self.selectedIndex]
+                    VC.viewDidLoad()
+                    VC.viewDidAppear(true)
+                }
             }
         }
     }

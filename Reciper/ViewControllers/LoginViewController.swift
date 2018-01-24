@@ -10,6 +10,7 @@ import UIKit
 
 import Firebase
 import GoogleSignIn
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
@@ -33,14 +34,32 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func pressedFacebook(_ sender: UIButton) {
+        // https://www.appcoda.com/firebase-facebook-login/
+        let fbLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            if let error = error {
+                self.present(Alerts.simple(title: "Failed to login", text: error.localizedDescription), animated: false, completion: nil)
+                return
+            }
+            
+            guard let accessToken = FBSDKAccessToken.current() else {
+                self.present(Alerts.simple(title: "Error", text: "Failed to get access token, to later"), animated: false, completion: nil)
+                return
+            }
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+            
+            // Perform login by calling Firebase APIs
+            Auth.auth().signIn(with: credential, completion: { (user, error) in
+                if let error = error {
+                    self.present(Alerts.simple(title: "Login error", text: error.localizedDescription), animated: false, completion: nil)
+                }
+                
+            })
+            
+        }
     }
-    */
+    
 
 }

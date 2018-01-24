@@ -131,6 +131,8 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         }
     }
     
+    
+    
     // Check if the view is low enough to load more recipes
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Distance from bottom
@@ -163,6 +165,11 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
             let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
             performSegue(withIdentifier: "AddRecipeToGroceries", sender: results[indexPath.row])
         }
+    }
+    
+    
+    @IBAction func unwindToPlanner(segue: UIStoryboardSegue) {
+        
     }
 
 

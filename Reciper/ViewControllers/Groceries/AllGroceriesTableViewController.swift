@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Firebase
+
 class AllGroceriesTableViewController: UITableViewController {
     var groceriesModel: GroceriesModel! = nil
     var userModel: UserModel! = nil
@@ -23,6 +25,12 @@ class AllGroceriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        if Auth.auth().currentUser == nil {
+            return
+        }
         
         groceriesModel = GroceriesModel.shared
         userModel = UserModel.shared

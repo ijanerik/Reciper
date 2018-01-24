@@ -13,6 +13,8 @@ class RecipeSearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     
+    var planningDate: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +37,7 @@ class RecipeSearchViewController: UIViewController {
         if(segue.identifier == "ToRecipeResults") {
             let resultsController = segue.destination as! RecipeResultsTableViewController
             resultsController.searchTerm = self.searchBar.text!
+            resultsController.planningDate = planningDate
         }
     }
     

@@ -10,9 +10,12 @@ import UIKit
 
 class RecipeViewController: UIViewController {
 
+    var planningDate: Date?
+    
     let RecipeAPI = RecipeAPIModel.shared
     let favoritesModel = FavoriteModel.shared
     let recipeModel = RecipeModel.shared
+    let plannerModel = PlannerModel.shared
     
     var smallRecipe: SmallRecipeEntity!
     var fullRecipe: FullRecipeEntity?
@@ -128,7 +131,14 @@ class RecipeViewController: UIViewController {
     
     @IBAction func pressedPlanning(_ sender: UIButton) {
         // Inplannen van het recept
-        self.performSegue(withIdentifier: "ToAddToPlanner", sender: self)
+        if let planningDate = self.planningDate {
+            let planner = PlannerEntity(id: nil, date: planningDate, recipeID: smallRecipe.id, recipe: nil)
+            let _ = self.plannerModel.add(planner)
+            self.recipeModel.add(smallRecipe)
+            self.performSegue(withIdentifier: "unwindToPlanner", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "ToAddToPlanner", sender: self)
+        }
     }
     
     

@@ -44,12 +44,28 @@
                                     <constraint firstAttribute="height" constant="49" id="qmt-f9-ric"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ib9-5l-CUM">
+                                <rect key="frame" x="99" y="236" width="240" height="49"/>
+                                <color key="backgroundColor" red="0.0" green="0.13158482142857142" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Cem-9G-RuB"/>
+                                    <constraint firstAttribute="height" constant="49" id="o8g-4V-ePY"/>
+                                </constraints>
+                                <state key="normal" title="Facebook login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedFacebook:" destination="upi-Gb-pO6" eventType="touchUpInside" id="Ry2-jI-PNI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="brd-YQ-RJR" firstAttribute="centerX" secondItem="U1p-u1-9Vt" secondAttribute="centerX" id="Crm-mX-bqv"/>
+                            <constraint firstItem="ib9-5l-CUM" firstAttribute="centerX" secondItem="U1p-u1-9Vt" secondAttribute="centerX" id="DnA-cK-Mle"/>
                             <constraint firstItem="brd-YQ-RJR" firstAttribute="top" secondItem="bkM-4R-4RJ" secondAttribute="bottom" constant="40" id="Gsg-Hn-5DX"/>
                             <constraint firstItem="4qh-ug-JyZ" firstAttribute="leading" secondItem="KZY-87-lAV" secondAttribute="leading" id="HrB-XQ-CIy"/>
+                            <constraint firstItem="ib9-5l-CUM" firstAttribute="top" secondItem="brd-YQ-RJR" secondAttribute="bottom" constant="20" id="Pzf-Of-m63"/>
                             <constraint firstItem="KZY-87-lAV" firstAttribute="trailing" secondItem="bkM-4R-4RJ" secondAttribute="trailing" constant="16" id="ZLg-S0-ZJS"/>
                             <constraint firstItem="bkM-4R-4RJ" firstAttribute="leading" secondItem="KZY-87-lAV" secondAttribute="leading" constant="16" id="bhs-n6-1CQ"/>
                             <constraint firstItem="4qh-ug-JyZ" firstAttribute="trailing" secondItem="KZY-87-lAV" secondAttribute="trailing" id="eUV-ap-oeC"/>
@@ -66,7 +82,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXI-lz-Y7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="r1M-8z-tpL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-818" y="-206"/>
+            <point key="canvasLocation" x="-819.17808219178085" y="-206.25"/>
         </scene>
         <!--Main Tab Bar View Controller-->
         <scene sceneID="FmJ-tA-2s5">
@@ -594,9 +610,11 @@
                         <segue destination="IOM-vw-ZLW" kind="popoverPresentation" identifier="ToAddToPlanner" popoverAnchorView="gzR-Q0-fke" id="Mif-x5-tsp">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="Mfg-M5-Fn9" kind="unwind" identifier="unwindToPlanner" unwindAction="unwindToPlannerWithSegue:" id="Z9r-cB-AXF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHg-3p-s3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Mfg-M5-Fn9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2944" y="-439"/>
         </scene>
@@ -1147,7 +1165,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="dqb-l6-VWd"/>
-        <segue reference="Que-35-hwz"/>
+        <segue reference="Xdi-7d-aLg"/>
         <segue reference="NiQ-ab-zM4"/>
         <segue reference="YEw-H5-fbE"/>
     </inferredMetricsTieBreakers>

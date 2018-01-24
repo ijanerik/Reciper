@@ -13,6 +13,8 @@ class RecipeResultsTableViewController: UITableViewController {
     var searchTerm : String!
     var recipes : [SmallRecipeEntity] = []
     
+    var planningDate: Date?
+    
     let RecipeAPI = RecipeAPIModel.shared
     
     var doLoadMore = false
@@ -81,6 +83,7 @@ class RecipeResultsTableViewController: UITableViewController {
         if(segue.identifier == "ToSingleRecipe") {
             let recipeController = segue.destination as! RecipeViewController
             recipeController.smallRecipe = self.recipes[tableView.indexPathForSelectedRow!.row]
+            recipeController.planningDate = planningDate
         }
     }
 
