@@ -12,7 +12,6 @@ import Firebase
 class PlannerModel : FirebaseModel {
     static let shared = PlannerModel()
     
-    var user: User!
     var recipeModel: RecipeModel! = nil
     var userModel: UserModel! = nil
     
@@ -26,7 +25,6 @@ class PlannerModel : FirebaseModel {
         recipeModel = RecipeModel.shared
         userModel = UserModel.shared
         
-        user = Auth.auth().currentUser!
         self.ref = self.db.reference(withPath: "planner")
     }
     

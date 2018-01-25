@@ -18,9 +18,19 @@ class HouseholdModel : FirebaseModel {
     
     override init() {
         super.init()
+        
         user = Auth.auth().currentUser!
         self.ref = self.db.reference(withPath: "households")
         self.userRef = self.db.reference(withPath: "users").child(user.uid).child("households")
+        
+        // So if you login with another account you still can loggin
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.user = user
+                
+                self.userRef = self.db.reference(withPath: "users").child(self.user.uid).child("households")
+            }
+        }
     }
     
     func addHousehold(_ household: HouseholdEntity) -> String {
@@ -35,12 +45,14 @@ class HouseholdModel : FirebaseModel {
         return houseHoldRef.key
     }
     
-    func addUser(_ household: HouseholdEntity, user: User) {
-        // @TODO add user to household
+    func addUser(_ household: HouseholdEntity, userID: String) {
+        self.ref.child(household.id!).child("users").child(userID).setValue(true)
+        self.db.reference(withPath: "users").child(userID).child("households").child(household.id!).setValue(true)
     }
     
-    func removeUser(_ household: HouseholdEntity, user: User) {
-        // @TODO add user to household
+    func removeUser(_ household: HouseholdEntity, userID: String) {
+        self.ref.child(household.id!).child("users").child(userID).removeValue()
+        self.db.reference(withPath: "users").child(userID).child("households").child(household.id!).removeValue()
     }
     
     func removeHousehold(_ household: HouseholdEntity) {

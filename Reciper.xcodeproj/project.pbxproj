@@ -17,6 +17,9 @@
 		BC186A13200CD4C6002E0E76 /* PlannerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */; };
 		BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A15200E0EE4002E0E76 /* PlannerModel.swift */; };
 		BC5ACFE22018DF7100CC3653 /* RecipesResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACFE12018DF7100CC3653 /* RecipesResultsTableViewCell.swift */; };
+		BC5ACFE42019F0B400CC3653 /* SharedWithHouseholdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACFE32019F0B400CC3653 /* SharedWithHouseholdTableViewController.swift */; };
+		BC5ACFE62019F9CA00CC3653 /* EmailCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACFE52019F9CA00CC3653 /* EmailCheckModel.swift */; };
+		BC5ACFE8201A06B000CC3653 /* AddUserToHouseholdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACFE7201A06B000CC3653 /* AddUserToHouseholdViewController.swift */; };
 		BC6635E320189C0F00903F8C /* FBObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6635E220189C0F00903F8C /* FBObserver.swift */; };
 		BC687C4B2015CA3000951024 /* eventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC687C4A2015CA3000951024 /* eventEmitter.swift */; };
 		BC687C4D2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC687C4C2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift */; };
@@ -33,7 +36,6 @@
 		BCEE56A820077B95000D6B5F /* RecipeResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */; };
 		BCEE56AE20078218000D6B5F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */; };
 		BCEE56B0200783CD000D6B5F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */; };
-		BCEE56B2200784CA000D6B5F /* AddGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */; };
 		BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B320078F6C000D6B5F /* RecipeAPIModel.swift */; };
 		BCEE56B62007905B000D6B5F /* SearchRecipeResultsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B52007905B000D6B5F /* SearchRecipeResultsEntity.swift */; };
 		BCEE56B8200791B4000D6B5F /* SmallRecipeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56B7200791B4000D6B5F /* SmallRecipeEntity.swift */; };
@@ -64,6 +66,9 @@
 		BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTableViewController.swift; sourceTree = "<group>"; };
 		BC186A15200E0EE4002E0E76 /* PlannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerModel.swift; sourceTree = "<group>"; };
 		BC5ACFE12018DF7100CC3653 /* RecipesResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesResultsTableViewCell.swift; sourceTree = "<group>"; };
+		BC5ACFE32019F0B400CC3653 /* SharedWithHouseholdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedWithHouseholdTableViewController.swift; sourceTree = "<group>"; };
+		BC5ACFE52019F9CA00CC3653 /* EmailCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckModel.swift; sourceTree = "<group>"; };
+		BC5ACFE7201A06B000CC3653 /* AddUserToHouseholdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserToHouseholdViewController.swift; sourceTree = "<group>"; };
 		BC6635E220189C0F00903F8C /* FBObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBObserver.swift; sourceTree = "<group>"; };
 		BC687C4A2015CA3000951024 /* eventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eventEmitter.swift; sourceTree = "<group>"; };
 		BC687C4C2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceriesFromRecipeTableViewController.swift; sourceTree = "<group>"; };
@@ -83,7 +88,6 @@
 		BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResultsTableViewController.swift; sourceTree = "<group>"; };
 		BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceryViewController.swift; sourceTree = "<group>"; };
 		BCEE56B320078F6C000D6B5F /* RecipeAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIModel.swift; sourceTree = "<group>"; };
 		BCEE56B52007905B000D6B5F /* SearchRecipeResultsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeResultsEntity.swift; sourceTree = "<group>"; };
 		BCEE56B7200791B4000D6B5F /* SmallRecipeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallRecipeEntity.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */,
 				BCEE56C62008B8BE000D6B5F /* CurrentHouseholdTableViewController.swift */,
 				BC186A0E200CACA2002E0E76 /* AllHouseholdsTableViewController.swift */,
+				BC5ACFE32019F0B400CC3653 /* SharedWithHouseholdTableViewController.swift */,
+				BC5ACFE7201A06B000CC3653 /* AddUserToHouseholdViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -155,7 +161,6 @@
 		BC186A00200A922A002E0E76 /* Groceries */ = {
 			isa = PBXGroup;
 			children = (
-				BCEE56B1200784CA000D6B5F /* AddGroceryViewController.swift */,
 				BC186A10200CCA16002E0E76 /* AllGroceriesTableViewController.swift */,
 				BC687C4C2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift */,
 			);
@@ -238,6 +243,7 @@
 				BC186A05200C8C87002E0E76 /* UserModel.swift */,
 				BC186A15200E0EE4002E0E76 /* PlannerModel.swift */,
 				BC687C5020162B1D00951024 /* GroceriesModel.swift */,
+				BC5ACFE52019F9CA00CC3653 /* EmailCheckModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -419,11 +425,11 @@
 				BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */,
 				BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */,
 				BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */,
+				BC5ACFE62019F9CA00CC3653 /* EmailCheckModel.swift in Sources */,
 				BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */,
 				BCEE56D2200A731C000D6B5F /* FirebaseModel.swift in Sources */,
 				BC1869FD200A91E9002E0E76 /* FavoritesTableViewController.swift in Sources */,
 				BC6635E320189C0F00903F8C /* FBObserver.swift in Sources */,
-				BCEE56B2200784CA000D6B5F /* AddGroceryViewController.swift in Sources */,
 				BC186A0F200CACA2002E0E76 /* AllHouseholdsTableViewController.swift in Sources */,
 				BC687C4D2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift in Sources */,
 				BCEE56CC200957DF000D6B5F /* PlannerEntity.swift in Sources */,
@@ -436,6 +442,7 @@
 				BC5ACFE22018DF7100CC3653 /* RecipesResultsTableViewCell.swift in Sources */,
 				BCEE56CE200A6267000D6B5F /* BigBlueButton.swift in Sources */,
 				BC687C4F201608A300951024 /* PlannerRecipeTableViewCell.swift in Sources */,
+				BC5ACFE8201A06B000CC3653 /* AddUserToHouseholdViewController.swift in Sources */,
 				BC186A11200CCA16002E0E76 /* AllGroceriesTableViewController.swift in Sources */,
 				BC687C5120162B1D00951024 /* GroceriesModel.swift in Sources */,
 				BC186A13200CD4C6002E0E76 /* PlannerTableViewController.swift in Sources */,
@@ -445,6 +452,7 @@
 				BCEE56C72008B8BE000D6B5F /* CurrentHouseholdTableViewController.swift in Sources */,
 				BC186A04200C8ABE002E0E76 /* HouseholdEntity.swift in Sources */,
 				BCEE56D4200A73A3000D6B5F /* RecipeModel.swift in Sources */,
+				BC5ACFE42019F0B400CC3653 /* SharedWithHouseholdTableViewController.swift in Sources */,
 				BCEE56B8200791B4000D6B5F /* SmallRecipeEntity.swift in Sources */,
 				BCEE56B0200783CD000D6B5F /* MainTabBarViewController.swift in Sources */,
 				BCEE56A820077B95000D6B5F /* RecipeResultsTableViewController.swift in Sources */,

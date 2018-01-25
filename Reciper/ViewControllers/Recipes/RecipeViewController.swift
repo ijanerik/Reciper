@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeViewController: UIViewController {
+class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var planningDate: Date?
     
@@ -30,6 +30,10 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var portionsLabel: UILabel!
     @IBOutlet weak var preperationsText: UITextView!
+    @IBOutlet weak var ingredientTable: UITableView!
+    
+    
+    
     
     
     @IBOutlet weak var preperationHeight: NSLayoutConstraint!
@@ -46,6 +50,9 @@ class RecipeViewController: UIViewController {
         super.viewDidLoad()
         loadAndDisplayRecipe()
         updateUI()
+        
+        ingredientTable.delegate = self
+        ingredientTable.dataSource = self
         
         _ = self.favoritesModel.get(self.smallRecipe, .observe) { (isFavorite) in
             self.isFavorite = isFavorite
@@ -114,6 +121,10 @@ class RecipeViewController: UIViewController {
         
         self.preperationHeight.constant = 0
         self.preperationHeight.constant = preperationsText.contentSize.height
+        
+        ingredientTable.reloadData()
+        self.ingredientsHeight.constant = 0
+        self.ingredientsHeight.constant = ingredientTable.contentSize.height
     }
     
     @objc func pressedFavoriteButton(sender: UIBarButtonItem) {
@@ -139,6 +150,21 @@ class RecipeViewController: UIViewController {
         } else {
             self.performSegue(withIdentifier: "ToAddToPlanner", sender: self)
         }
+    }
+    
+    // MARK: - Table View
+    // Give amount of recipes as amount of rows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Asked how much")
+        print(self.fullRecipe?.ingredients.count ?? 0)
+        return self.fullRecipe?.ingredients.count ?? 0
+    }
+    
+    // Load in per recipe
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Ingredient", for: indexPath)
+        cell.textLabel?.text = self.fullRecipe?.ingredients[indexPath.row].label ?? ""
+        return cell
     }
     
     

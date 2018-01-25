@@ -54,6 +54,7 @@ class UserModel : FirebaseModel {
                 newHouseholdID = households[0]
             }
             self.setCurrentHousehold(newHouseholdID)
+            EmailCheckModel.shared.setEmail()
         }
     }
     
@@ -94,7 +95,6 @@ class UserModel : FirebaseModel {
         }
         householdChanger.listen(handler: with)
     }
-    
 }
 
 

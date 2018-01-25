@@ -12,8 +12,6 @@ import Firebase
 class GroceriesModel : FirebaseModel {
     static let shared = GroceriesModel()
     
-    var user: User!
-    
     var userModel: UserModel! = nil
     
     override init() {

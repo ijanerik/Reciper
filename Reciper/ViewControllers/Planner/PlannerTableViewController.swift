@@ -155,6 +155,9 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
             let addGroceriesController = segue.destination as! AddGroceriesFromRecipeTableViewController
             let result = sender as! PlannerEntity
             addGroceriesController.planner = result
+        } else if segue.identifier == "AddRecipe" {
+            let searchController = segue.destination as! RecipeSearchViewController
+            searchController.planningDate = self.days[tableView.indexPathForSelectedRow!.section]
         }
     }
     
@@ -166,9 +169,7 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
     }
     
     
-    @IBAction func unwindToPlanner(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToPlanner(segue: UIStoryboardSegue) { }
 
 
 }

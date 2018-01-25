@@ -22,6 +22,16 @@ class FavoriteModel : FirebaseModel {
         
         self.ref = self.db.reference(withPath: "favorites").child(user.uid)
         self.ref.keepSynced(true)
+        
+        // So if you login with another account you still can loggin
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.user = user
+                self.ref.keepSynced(false)
+                self.ref = self.db.reference(withPath: "favorites").child(self.user.uid)
+                self.ref.keepSynced(true)
+            }
+        }
     }
     
     func add(_ recipe: SmallRecipeEntity) {

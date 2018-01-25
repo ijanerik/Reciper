@@ -12,11 +12,8 @@ import Firebase
 class RecipeModel : FirebaseModel {
     static let shared = RecipeModel()
     
-    var user: User!
-    
     override init() {
         super.init()
-        user = Auth.auth().currentUser!
         self.ref = self.db.reference(withPath: "recipes")
     }
     

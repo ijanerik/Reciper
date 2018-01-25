@@ -20,6 +20,7 @@ class BigBlueButton: UIButton {
         setTitleColor(tintColor, for: .highlighted)
         setTitleColor(UIColor.white, for: .normal)
         backgroundColor = tintColor;
+        
     }
 
 }

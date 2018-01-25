@@ -10,7 +10,7 @@ import UIKit
 
 import Firebase
 
-class AllGroceriesTableViewController: UITableViewController {
+class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegate {
     var groceriesModel: GroceriesModel! = nil
     var userModel: UserModel! = nil
     var recipeModel: RecipeModel! = nil
@@ -53,13 +53,38 @@ class AllGroceriesTableViewController: UITableViewController {
                     
                     self.tableView.reloadData()
                 })
+                self.tableView.reloadData()
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - Add Grocery label
+    
+    @IBAction func startAddingGrocery(_ sender: UITextField) {
+        sender.delegate = self
+        sender.returnKeyType = .done
+    }
+    
+        
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        if let text = textField.text, text.isEmpty {
+            textField.resignFirstResponder()
+            return true
+        } else {
+            let grocery = GroceryEntity(id: nil,
+                                        title: textField.text!,
+                                        plannerID: nil,
+                                        planner: nil,
+                                        recipeID: nil,
+                                        recipe: nil,
+                                        done: false
+            )
+        
+            _ = self.groceriesModel.add(grocery)
+            textField.text = ""
+            return false
+        }
     }
 
     // MARK: - Table view data source

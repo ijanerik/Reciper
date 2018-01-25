@@ -19,15 +19,15 @@ class NewHouseholdViewController: UIViewController {
         super.viewDidLoad()
         
         householdModel = HouseholdModel.shared
+        titleField.becomeFirstResponder()
     }
 
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if let textField = titleField.text, !textField.isEmpty {
             let household = HouseholdEntity(id: nil, title: textField, userIDs: [])
             let _ = self.householdModel.addHousehold(household)
-            print("Better return")
-            // @TODO
-            //self.navigationController?.popViewController(animated: true)
+            
+            self.navigationController?.popViewController(animated: true)
         } else {
             // @TODO animation on error
         }
