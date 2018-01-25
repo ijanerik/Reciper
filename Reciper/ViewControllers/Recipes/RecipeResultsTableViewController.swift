@@ -64,15 +64,30 @@ class RecipeResultsTableViewController: UITableViewController {
     // Load in per recipe
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeResultCell", for: indexPath)
-        cell.textLabel?.text = String(self.recipes[indexPath.row].title)
-        return cell
+        let newCell = cell as! RecipesResultsTableViewCell
+        
+        let recipe = self.recipes[indexPath.row]
+        
+        if let imageUrl = recipe.image {
+            self.RecipeAPI.fetchImage(url: imageUrl, completion: { (image) in
+                DispatchQueue.main.async {
+                    if let cellToUpdate = self.tableView.cellForRow(at: indexPath) {
+                        let newCell = cellToUpdate as! RecipesResultsTableViewCell
+                        newCell.updateImage(image)
+                    }
+                }
+            })
+        }
+        
+        newCell.updateText(recipe)
+        return newCell
     }
     
     
     // Check if the scroll view is low enough to load more recipes
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let distance : CGFloat = 200
+        let distance : CGFloat = 500
         if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height - distance
             && scrollView.contentSize.height > 0 && self.doLoadMore == false) {
             findAndUpdateResults(self.searchTerm, moreLoading: true)

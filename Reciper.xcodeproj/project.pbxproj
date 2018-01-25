@@ -16,6 +16,7 @@
 		BC186A11200CCA16002E0E76 /* AllGroceriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A10200CCA16002E0E76 /* AllGroceriesTableViewController.swift */; };
 		BC186A13200CD4C6002E0E76 /* PlannerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */; };
 		BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC186A15200E0EE4002E0E76 /* PlannerModel.swift */; };
+		BC5ACFE22018DF7100CC3653 /* RecipesResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACFE12018DF7100CC3653 /* RecipesResultsTableViewCell.swift */; };
 		BC6635E320189C0F00903F8C /* FBObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6635E220189C0F00903F8C /* FBObserver.swift */; };
 		BC687C4B2015CA3000951024 /* eventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC687C4A2015CA3000951024 /* eventEmitter.swift */; };
 		BC687C4D2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC687C4C2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift */; };
@@ -62,6 +63,7 @@
 		BC186A10200CCA16002E0E76 /* AllGroceriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroceriesTableViewController.swift; sourceTree = "<group>"; };
 		BC186A12200CD4C6002E0E76 /* PlannerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTableViewController.swift; sourceTree = "<group>"; };
 		BC186A15200E0EE4002E0E76 /* PlannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerModel.swift; sourceTree = "<group>"; };
+		BC5ACFE12018DF7100CC3653 /* RecipesResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesResultsTableViewCell.swift; sourceTree = "<group>"; };
 		BC6635E220189C0F00903F8C /* FBObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBObserver.swift; sourceTree = "<group>"; };
 		BC687C4A2015CA3000951024 /* eventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eventEmitter.swift; sourceTree = "<group>"; };
 		BC687C4C2015FC6300951024 /* AddGroceriesFromRecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceriesFromRecipeTableViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				BCEE56CD200A6267000D6B5F /* BigBlueButton.swift */,
 				BC687C4E201608A300951024 /* PlannerRecipeTableViewCell.swift */,
+				BC5ACFE12018DF7100CC3653 /* RecipesResultsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				BC186A02200C8A81002E0E76 /* HouseholdModel.swift in Sources */,
 				BCEE56CA200956C6000D6B5F /* GroceryEntity.swift in Sources */,
 				BCEE56BC20079220000D6B5F /* IngredientEntity.swift in Sources */,
+				BC5ACFE22018DF7100CC3653 /* RecipesResultsTableViewCell.swift in Sources */,
 				BCEE56CE200A6267000D6B5F /* BigBlueButton.swift in Sources */,
 				BC687C4F201608A300951024 /* PlannerRecipeTableViewCell.swift in Sources */,
 				BC186A11200CCA16002E0E76 /* AllGroceriesTableViewController.swift in Sources */,

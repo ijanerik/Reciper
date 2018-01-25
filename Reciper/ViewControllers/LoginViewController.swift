@@ -14,8 +14,6 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
-    @IBOutlet weak var signInButton: GIDSignInButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +31,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func pressedGoogle(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
     @IBAction func pressedFacebook(_ sender: UIButton) {
         // https://www.appcoda.com/firebase-facebook-login/
         let fbLoginManager = FBSDKLoginManager()
