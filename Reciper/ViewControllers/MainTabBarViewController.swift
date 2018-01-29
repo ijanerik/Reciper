@@ -13,7 +13,7 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
                 self.performSegue(withIdentifier: "ToLogin", sender: nil)

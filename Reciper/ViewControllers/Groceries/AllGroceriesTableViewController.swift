@@ -35,7 +35,10 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
         userModel = UserModel.shared
         recipeModel = RecipeModel.shared
         
+        print("Changed1")
+        
         userModel.addHouseholdChanger { (householdID) in
+            print("Changed")
             self.groceriesObserverHandler?.unobserve()
             
             self.groceries = ["":[]]
