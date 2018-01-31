@@ -2,6 +2,9 @@
 //  FullRecipeEntity.swift
 //  Reciper
 //
+// The full recipe Entity class holds all the information about
+//  the recipe including preperations and ingredients.
+//
 //  Created by Jan Erik van Woerden on 11-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //
@@ -19,7 +22,6 @@ struct FullRecipeEntity : Codable {
     var tags : [String]
     var servings : String
     
-    // Extra to SmallRecipe (Needs extending, but how about enum?)
     var bigImage : URL?
     var ingredients : [IngredientEntity]
     var nutrition : [String: String]

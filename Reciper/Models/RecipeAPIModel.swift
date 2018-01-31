@@ -13,10 +13,8 @@ class RecipeAPIModel {
     
     let baseURL = URL(string: "http://reciper.janerik.net/")!
     
+    // Search for a recipe based on the search term
     func search(searchTerm: String,
-                dishType: String = "all",
-                tags: String = "",
-                maxTiming: Int? = nil,
                 totalResults: Int = 20,
                 startResults: Int = 0,
                 completion: @escaping (SearchRecipeResultsEntity?
@@ -44,6 +42,7 @@ class RecipeAPIModel {
         task.resume()
     }
     
+    // Fetch a single recipe
     func getRecipe(recipeID: String, completion: @escaping (FullRecipeEntity?) -> Void) {
         let recipeURL = baseURL.appendingPathComponent("single").appendingPathComponent(recipeID)
         let task = URLSession.shared.dataTask(with: recipeURL) { (data, response, error) in

@@ -2,6 +2,9 @@
 //  SmallRecipeEntity.swift
 //  Reciper
 //
+// This small recipe Entity class can hold all the basic information about a recipe.
+// Basicly all the information except the ingredients and the preperation text.
+//
 //  Created by Jan Erik van Woerden on 11-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //

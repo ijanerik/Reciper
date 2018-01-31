@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 struct IngredientEntity : Codable {
+    // The text of the ingredient
     var label : String
     
     enum CodingKeys: String, CodingKey {

@@ -13,9 +13,13 @@ struct GroceryEntity {
     var id: String?
     var title: String
     var plannerID: String?
-    var planner: PlannerEntity?
     var recipeID: String?
-    var recipe: SmallRecipeEntity?
     var done: Bool
+    
+    // Grabbed based on the planner ID.
+    var planner: PlannerEntity?
+    
+    // Based on the recipe ID
+    var recipe: SmallRecipeEntity?
 }
 

@@ -292,7 +292,7 @@
             </objects>
             <point key="canvasLocation" x="1143.8356164383563" y="-439.453125"/>
         </scene>
-        <!--Recepten-->
+        <!--Mijn Recepten-->
         <scene sceneID="FBM-P9-3GJ">
             <objects>
                 <tableViewController id="xLX-iX-MJX" customClass="FavoritesTableViewController" customModule="Reciper" customModuleProvider="target" sceneMemberID="viewController">
@@ -364,7 +364,7 @@
                             <outlet property="delegate" destination="xLX-iX-MJX" id="Zgd-QQ-PHl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recepten" id="sEE-aM-mFV">
+                    <navigationItem key="navigationItem" title="Mijn Recepten" id="sEE-aM-mFV">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="JRq-By-Sgf">
                             <connections>
                                 <segue destination="dfJ-hf-Q9w" kind="show" identifier="SearchRecipe" id="XuK-rQ-uUd"/>
@@ -1258,7 +1258,7 @@
         <segue reference="Xdi-7d-aLg"/>
         <segue reference="XuK-rQ-uUd"/>
         <segue reference="w1f-iP-I2y"/>
-        <segue reference="NiQ-ab-zM4"/>
-        <segue reference="fV1-si-lNp"/>
+        <segue reference="rPc-qo-glv"/>
+        <segue reference="Aqb-eN-6yC"/>
     </inferredMetricsTieBreakers>
 </document>
