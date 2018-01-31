@@ -113,10 +113,11 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             portionsLabel.text = smallRecipe.servings
         }
         
+        favoriteButton.tintColor = UIColor.red
         if isFavorite == true {
-            favoriteButton.tintColor = UIColor.red
+             favoriteButton.image = UIImage(named: "icons8-heart-filled-50")
         } else {
-            favoriteButton.tintColor = UIColor.blue
+            favoriteButton.image = UIImage(named: "icons8-heart-50")
         }
         
         self.preperationHeight.constant = 0

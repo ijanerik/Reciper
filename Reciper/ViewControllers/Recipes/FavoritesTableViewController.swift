@@ -8,13 +8,17 @@
 
 import UIKit
 
-class FavoritesTableViewController: UITableViewController {
+class FavoritesTableViewController: UITableViewController, FavoriteRecipeCellDelegate {
     
     var favoriteModel: FavoriteModel!
     var recipeModel: RecipeModel!
     var userModel: UserModel!
+    var plannerModel: PlannerModel!
+    
+    var indicator: SimpleLoader!
     
     var recipes: [SmallRecipeEntity] = []
+    var planningDate: Date?
     
     var favoritesObserverHandler: FBObserver?
     
@@ -24,16 +28,35 @@ class FavoritesTableViewController: UITableViewController {
         favoriteModel = FavoriteModel.shared
         recipeModel = RecipeModel.shared
         userModel = UserModel.shared
-
+        plannerModel = PlannerModel.shared
+        
+        indicator = SimpleLoader(self)
         
         userModel.addHouseholdChanger { (_) in
             self.recipes = []
+            self.indicator.start()
             self.favoritesObserverHandler?.unobserve()
             self.tableView.reloadData()
             
             self.favoritesObserverHandler = self.favoriteModel.allRecipes(.observe) { (results) in
                 self.recipes = results
+                self.indicator.stop()
                 self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func addToPlannerTapped(sender: FavoriteRecipeTableViewCell) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            if let planningDate = self.planningDate {
+                let planner = PlannerEntity(id: nil,
+                                            date: planningDate,
+                                            recipeID: self.recipes[indexPath.row].id,
+                                            recipe: nil)
+                let _ = self.plannerModel.add(planner)
+                self.performSegue(withIdentifier: "unwindToPlanner", sender: self)
+            } else {
+                performSegue(withIdentifier: "AddToPlanner", sender: recipes[indexPath.row])
             }
         }
     }
@@ -46,10 +69,24 @@ class FavoritesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteRecipe", for: indexPath)
+        let newCell = cell as! FavoriteRecipeTableViewCell
 
-        cell.textLabel?.text = self.recipes[indexPath.row].title
+        let recipe = self.recipes[indexPath.row]
+        newCell.delegate = self
+        newCell.update(recipe)
+        
+        if let imageUrl = recipe.image {
+            RecipeAPIModel.shared.fetchImage(url: imageUrl, completion: { (image) in
+                DispatchQueue.main.async {
+                    if let cellToUpdate = self.tableView.cellForRow(at: indexPath) {
+                        let newCell = cellToUpdate as! FavoriteRecipeTableViewCell
+                        newCell.updateImage(image)
+                    }
+                }
+            })
+        }
 
-        return cell
+        return newCell
     }
 
     
@@ -71,9 +108,16 @@ class FavoritesTableViewController: UITableViewController {
         if(segue.identifier == "ToSingleRecipe") {
             let recipeController = segue.destination as! RecipeViewController
             recipeController.smallRecipe = self.recipes[tableView.indexPathForSelectedRow!.row]
-        } else if segue.identifier == "ToAddToPlanner" {
+        } else if segue.identifier == "AddToPlanner" {
             let controller = segue.destination as! AddToPlannerTableViewController
-            controller.recipe = self.recipes[tableView.indexPathForSelectedRow!.row]
+            controller.recipe = (sender as! SmallRecipeEntity)
+        } else if segue.identifier == "SearchRecipe" {
+            let resultsController = segue.destination as! RecipeResultsTableViewController
+            resultsController.planningDate = planningDate
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            navigationItem.backBarButtonItem = backItem
         }
     }
 

@@ -26,6 +26,7 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
     
     // For correctly remove old plannerHandler after changing household.
     var plannerObserverHandler: FBObserver?
+    var indicator: SimpleLoader!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +43,15 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         userModel = UserModel.shared
         
         userModel.addHouseholdChanger { (householdID) in
+            self.indicator = SimpleLoader(self)
+            self.indicator.start()
             self.results = [:]
             self.plannerObserverHandler?.unobserve()
             self.tableView.reloadData()
             
             self.plannerObserverHandler = self.plannerModel.allWithRecipe(.observe) { (results) in
                 self.results = results
+                self.indicator.stop()
                 self.tableView.reloadData()
             }
         }
@@ -77,6 +81,17 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
                 correctCell.delegate = self
                 if let recipe = results[indexPath.row].recipe {
                     correctCell.update(recipe)
+                    
+                    if let imageUrl = recipe.image {
+                        RecipeAPIModel.shared.fetchImage(url: imageUrl, completion: { (image) in
+                            DispatchQueue.main.async {
+                                if let cellToUpdate = self.tableView.cellForRow(at: indexPath) {
+                                    let newCell = cellToUpdate as! PlannerRecipeTableViewCell
+                                    newCell.updateImage(image)
+                                }
+                            }
+                        })
+                    }
                 }
                 return correctCell
             } else {
@@ -156,7 +171,7 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
             let result = sender as! PlannerEntity
             addGroceriesController.planner = result
         } else if segue.identifier == "AddRecipe" {
-            let searchController = segue.destination as! RecipeSearchViewController
+            let searchController = segue.destination as! FavoritesTableViewController
             searchController.planningDate = self.days[tableView.indexPathForSelectedRow!.section]
         }
     }

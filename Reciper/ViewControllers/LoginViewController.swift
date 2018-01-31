@@ -14,21 +14,33 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
+    @IBOutlet weak var googleButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initUI()
+        
         GIDSignIn.sharedInstance().uiDelegate = self
         
+        checkForDismissScreen()
+    }
+    
+    // Check if the user is logged in, then the screen can be dismissed
+    func checkForDismissScreen() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
                 self.dismiss(animated: true, completion: nil)
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - Buttons to sign in Google/Facebook
+    
+    func initUI() {
+        self.googleButton.layer.cornerRadius = 8
+        self.facebookButton.layer.cornerRadius = 8
     }
     
     @IBAction func pressedGoogle(_ sender: Any) {

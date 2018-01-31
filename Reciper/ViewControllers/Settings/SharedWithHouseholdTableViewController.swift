@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SharedWithHouseholdTableViewController: UITableViewController {
     
@@ -46,17 +47,18 @@ class SharedWithHouseholdTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SharedWith", for: indexPath)
-        cell.textLabel?.text = self.household.userIDs[indexPath.row]
+        if self.household.userIDs[indexPath.row] == Auth.auth().currentUser?.uid {
+            cell.textLabel?.text = "Jijzelf"
+        } else {
+            cell.textLabel?.text = self.household.userIDs[indexPath.row]
+        }
         return cell
     }
-
-
-    // @TODO jezelf verwijderen? Dan gaat er iets niet goed!!!
     
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        return  self.household.userIDs[indexPath.row] == Auth.auth().currentUser?.uid ? false : true
     }
  
     // Override to support editing the table view.
@@ -65,6 +67,7 @@ class SharedWithHouseholdTableViewController: UITableViewController {
             self.householdModel.removeUser(household, userID: self.household.userIDs[indexPath.row])
         }
     }
+    */
 
     // MARK: - Navigation
 

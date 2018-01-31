@@ -17,23 +17,28 @@ class PlannerRecipeTableViewCell: UITableViewCell {
     var delegate: PlannerRecipeCellDelegate?
     
     @IBOutlet weak var labelText: UILabel!
+    @IBOutlet weak var plannerImage: UIImageView!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    @IBAction func clickAddToGroceries(_ sender: UIButton) {
-        delegate?.addToGroceriesTapped(sender: self)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+    // Update all the text from the cell based on the recipe
     func update(_ recipe: SmallRecipeEntity) {
         self.labelText.text = recipe.title
+    }
+    
+    // Update the image of the Cell
+    func updateImage(_ image: UIImage?) {
+        if let image = image {
+            self.plannerImage.image = image
+            self.plannerImage.isHidden = false
+            self.plannerImage.layer.cornerRadius = 8
+        } else {
+            self.plannerImage.isHidden = true
+        }
+        self.setNeedsLayout()
+    }
+    
+    // Call delegate when the add to groceries button is clicked
+    @IBAction func clickAddToGroceries(_ sender: UIButton) {
+        delegate?.addToGroceriesTapped(sender: self)
     }
 
 }

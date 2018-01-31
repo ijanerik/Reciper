@@ -1,16 +1,16 @@
 //
-//  AddRecipeButton.swift
+//  AddButton.swift
 //  Reciper
 //
-//  Extend a UIButton with a primary big blue button.
+//  Extend a UIButton with a nice white background a blue rounded border.
 //
-//  Created by Jan Erik van Woerden on 13-01-18.
+//  Created by Jan Erik van Woerden on 29-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //
 
 import UIKit
 
-class BigBlueButton: UIButton {
+class AddButton: UIButton {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -20,8 +20,7 @@ class BigBlueButton: UIButton {
         clipsToBounds = true
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         setTitleColor(tintColor, for: .highlighted)
-        setTitleColor(UIColor.white, for: .normal)
-        backgroundColor = tintColor;
+        setTitleColor(tintColor, for: .normal)
     }
 
 }

@@ -32,6 +32,9 @@
 		BC9FB7FC20177BFB00152AFA /* simpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FB7FB20177BFB00152AFA /* simpleAlert.swift */; };
 		BCA0D29C20062760007EE11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */; };
 		BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA0D2A420064969007EE11A /* LoginViewController.swift */; };
+		BCE819B1201F3D2D001C3FCB /* simpleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE819B0201F3D2D001C3FCB /* simpleLoader.swift */; };
+		BCE819B3201F4EDD001C3FCB /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE819B2201F4EDD001C3FCB /* AddButton.swift */; };
+		BCE819B5201F681B001C3FCB /* FavoriteRecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE819B4201F681B001C3FCB /* FavoriteRecipeViewCell.swift */; };
 		BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */; };
 		BCEE56A820077B95000D6B5F /* RecipeResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */; };
 		BCEE56AE20078218000D6B5F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */; };
@@ -84,6 +87,9 @@
 		BCA0D29B2006275F007EE11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCA0D2A3200646CE007EE11A /* Reciper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reciper.entitlements; sourceTree = "<group>"; };
 		BCA0D2A420064969007EE11A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BCE819B0201F3D2D001C3FCB /* simpleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simpleLoader.swift; sourceTree = "<group>"; };
+		BCE819B2201F4EDD001C3FCB /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		BCE819B4201F681B001C3FCB /* FavoriteRecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewCell.swift; sourceTree = "<group>"; };
 		BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewController.swift; sourceTree = "<group>"; };
 		BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResultsTableViewController.swift; sourceTree = "<group>"; };
 		BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				BC687C4A2015CA3000951024 /* eventEmitter.swift */,
 				BC9FB7FB20177BFB00152AFA /* simpleAlert.swift */,
 				BC6635E220189C0F00903F8C /* FBObserver.swift */,
+				BCE819B0201F3D2D001C3FCB /* simpleLoader.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -268,6 +275,8 @@
 				BCEE56CD200A6267000D6B5F /* BigBlueButton.swift */,
 				BC687C4E201608A300951024 /* PlannerRecipeTableViewCell.swift */,
 				BC5ACFE12018DF7100CC3653 /* RecipesResultsTableViewCell.swift */,
+				BCE819B2201F4EDD001C3FCB /* AddButton.swift */,
+				BCE819B4201F681B001C3FCB /* FavoriteRecipeViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -426,7 +435,9 @@
 				BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */,
 				BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */,
 				BC5ACFE62019F9CA00CC3653 /* EmailCheckModel.swift in Sources */,
+				BCE819B3201F4EDD001C3FCB /* AddButton.swift in Sources */,
 				BCEE56B420078F6C000D6B5F /* RecipeAPIModel.swift in Sources */,
+				BCE819B1201F3D2D001C3FCB /* simpleLoader.swift in Sources */,
 				BCEE56D2200A731C000D6B5F /* FirebaseModel.swift in Sources */,
 				BC1869FD200A91E9002E0E76 /* FavoritesTableViewController.swift in Sources */,
 				BC6635E320189C0F00903F8C /* FBObserver.swift in Sources */,
@@ -441,6 +452,7 @@
 				BCEE56BC20079220000D6B5F /* IngredientEntity.swift in Sources */,
 				BC5ACFE22018DF7100CC3653 /* RecipesResultsTableViewCell.swift in Sources */,
 				BCEE56CE200A6267000D6B5F /* BigBlueButton.swift in Sources */,
+				BCE819B5201F681B001C3FCB /* FavoriteRecipeViewCell.swift in Sources */,
 				BC687C4F201608A300951024 /* PlannerRecipeTableViewCell.swift in Sources */,
 				BC5ACFE8201A06B000CC3653 /* AddUserToHouseholdViewController.swift in Sources */,
 				BC186A11200CCA16002E0E76 /* AllGroceriesTableViewController.swift in Sources */,

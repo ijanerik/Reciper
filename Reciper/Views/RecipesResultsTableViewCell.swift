@@ -15,17 +15,14 @@ class RecipesResultsTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeTime: UILabel!
     @IBOutlet weak var recipePersons: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    // Update all the text from the cell based on the recipe
+    func updateText(_ recipe: SmallRecipeEntity) {
+        recipeTitle.text = recipe.title
+        recipeTime.text =  "\(recipe.time) minuten"
+        recipePersons.text = recipe.servings
     }
     
+    // Update the image from the cell based on the recipe
     func updateImage(_ image: UIImage?) {
         if let image = image {
             self.recipeImage.image = image
@@ -35,11 +32,4 @@ class RecipesResultsTableViewCell: UITableViewCell {
         }
         self.setNeedsLayout()
     }
-    
-    func updateText(_ recipe: SmallRecipeEntity) {
-        recipeTitle.text = recipe.title
-        recipeTime.text =  "\(recipe.time) minuten"
-        recipePersons.text = recipe.servings
-    }
-
 }

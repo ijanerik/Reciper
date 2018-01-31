@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AllHouseholdsTableViewController: UITableViewController {
 
@@ -43,7 +44,7 @@ class AllHouseholdsTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "ToNewHousehold", sender: self)
     }
 
-    // MARK: - Table population
+    // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.results.count
     }
@@ -56,9 +57,25 @@ class AllHouseholdsTableViewController: UITableViewController {
         return cell
     }
     
+    /*
+    // MARK: - Deleting cells
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        var household = self.results[indexPath.row]
+        if household.userIDs.count == 1 && household.userIDs[0] == Auth.auth().currentUser?.uid {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            var household = self.results[indexPath.row]
+        }
+    }
+    */
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToSharedWith" {
             let controller = segue.destination as! SharedWithHouseholdTableViewController

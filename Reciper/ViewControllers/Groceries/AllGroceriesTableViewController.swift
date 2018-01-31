@@ -22,12 +22,25 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     var groceries: [String: [GroceryEntity]] = ["":[]]
     var recipes: [String: SmallRecipeEntity] = [:]
     
+    // Check if the system is loaded?
+    var loaded = false
+    var indicator: SimpleLoader!
+    
+    var tryAddingNewItem: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        if Auth.auth().currentUser == nil {
+
+        checkInitSystem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkInitSystem()
+    }
+    
+    // Need to load once, but after the user logged in
+    func checkInitSystem() {
+        guard loaded == false, Auth.auth().currentUser != nil else {
             return
         }
         
@@ -35,11 +48,11 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
         userModel = UserModel.shared
         recipeModel = RecipeModel.shared
         
-        print("Changed1")
-        
         userModel.addHouseholdChanger { (householdID) in
-            print("Changed")
             self.groceriesObserverHandler?.unobserve()
+            
+            self.indicator = SimpleLoader(self)
+            self.indicator.start()
             
             self.groceries = ["":[]]
             self.recipes = [:]
@@ -56,9 +69,12 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
                     
                     self.tableView.reloadData()
                 })
+                self.indicator.stop()
                 self.tableView.reloadData()
             }
         }
+        
+        loaded = true
     }
     
     // MARK: - Add Grocery label
@@ -66,6 +82,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     @IBAction func startAddingGrocery(_ sender: UITextField) {
         sender.delegate = self
         sender.returnKeyType = .done
+        tryAddingNewItem = sender
     }
     
         
@@ -73,6 +90,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     {
         if let text = textField.text, text.isEmpty {
             textField.resignFirstResponder()
+            tryAddingNewItem = nil
             return true
         } else {
             let grocery = GroceryEntity(id: nil,
@@ -128,6 +146,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionName = self.getSectionNameByIndex(indexPath.section)
         if sectionName == "" && groceries[""]?.count ?? 0 <= indexPath.row {
+            tryAddingNewItem?.becomeFirstResponder()
             return tableView.dequeueReusableCell(withIdentifier: "AddGroceryCell", for: indexPath)
         }
         

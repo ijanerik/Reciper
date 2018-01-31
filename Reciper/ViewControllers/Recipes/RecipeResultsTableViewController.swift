@@ -10,19 +10,46 @@ import UIKit
 
 class RecipeResultsTableViewController: UITableViewController {
     
-    var searchTerm : String!
+    var searchTerm : String = ""
     var recipes : [SmallRecipeEntity] = []
     
     var planningDate: Date?
+    var indicator: SimpleLoader!
     
     let RecipeAPI = RecipeAPIModel.shared
     
+    var searchController = UISearchController(searchResultsController: nil)
+    
     var doLoadMore = false
+    var shouldLoadMore = false
+    var latestSearch = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        indicator = SimpleLoader(self)
+        indicator.start()
+        
+        initSearchBar()
         
         findAndUpdateResults(searchTerm)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        searchController.isActive = true
+        DispatchQueue.main.async {
+            self.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+    
+    func initSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Zoek recepten"
+        searchController.searchBar.sizeToFit()
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.titleView = searchController.searchBar
+        definesPresentationContext = true
     }
     
     
@@ -35,22 +62,36 @@ class RecipeResultsTableViewController: UITableViewController {
         
         if moreLoading == true {
             self.doLoadMore = true
+        } else {
+            self.shouldLoadMore = true
+        }
+        
+        guard self.shouldLoadMore == true else {
+            return
         }
         
         self.RecipeAPI.search(searchTerm: searchTerm, startResults: startResults) { (results) in
             DispatchQueue.main.async {
-                if let results = results {
+                if let results = results, self.searchTerm == searchTerm || self.latestSearch != self.searchTerm {
                     if moreLoading == false {
                         self.recipes = results.results
                     } else {
                         self.recipes += results.results
                     }
                     
+                    if results.results.count == 0 {
+                        self.shouldLoadMore = false
+                    }
+                    
+                    self.indicator.stop()
+                    
                     self.tableView.reloadData()
                     
                     if self.doLoadMore == true {
                         self.doLoadMore = false
                     }
+                    
+                    self.latestSearch = searchTerm
                 }
             }
         }
@@ -86,8 +127,7 @@ class RecipeResultsTableViewController: UITableViewController {
     
     // Check if the scroll view is low enough to load more recipes
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let distance : CGFloat = 500
+        let distance : CGFloat = 100
         if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height - distance
             && scrollView.contentSize.height > 0 && self.doLoadMore == false) {
             findAndUpdateResults(self.searchTerm, moreLoading: true)
@@ -102,4 +142,12 @@ class RecipeResultsTableViewController: UITableViewController {
         }
     }
 
+}
+
+extension RecipeResultsTableViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        self.searchTerm = searchController.searchBar.text ?? ""
+        findAndUpdateResults(self.searchTerm, moreLoading: false)
+    }
 }

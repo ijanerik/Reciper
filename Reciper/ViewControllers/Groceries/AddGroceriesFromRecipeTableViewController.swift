@@ -38,32 +38,32 @@ class AddGroceriesFromRecipeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.fullRecipe?.ingredients.count ?? 0
+        return (self.fullRecipe?.ingredients.count ?? 0) + 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
 
-        cell.textLabel?.text = self.fullRecipe!.ingredients[indexPath.row].label
-        if self.selecteds[indexPath.row] == true {
-            cell.accessoryType = .checkmark
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ToggleCell", for: indexPath)
+            if isAllRowsSelected() {
+                cell.textLabel?.text = "Deselecteer alle boodschappen"
+            } else {
+                cell.textLabel?.text = "Selecteer alle boodschappen"
+            }
+            return cell
         } else {
-            cell.accessoryType = .none
+            let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+            cell.textLabel?.text = self.fullRecipe!.ingredients[indexPath.row - 1].label
+            if self.selecteds[indexPath.row - 1] == true {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
+
+            return cell
         }
-
-        return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func pressedCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -87,11 +87,25 @@ class AddGroceriesFromRecipeTableViewController: UITableViewController {
         }
     }
     
+    func isAllRowsSelected() -> Bool {
+        return self.selecteds.filter { $0 == false }.count == 0
+    }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selecteds[indexPath.row] = !self.selecteds[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
-        tableView.reloadData()
+        if indexPath.row == 0 {
+            if isAllRowsSelected() {
+                selecteds = [Bool].init(repeating: false, count: selecteds.count)
+            } else {
+                selecteds = [Bool].init(repeating: true, count: selecteds.count)
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+            tableView.reloadData()
+        } else {
+            self.selecteds[indexPath.row - 1] = !self.selecteds[indexPath.row - 1]
+            tableView.deselectRow(at: indexPath, animated: true)
+            tableView.reloadData()
+        }
     }
     
 
