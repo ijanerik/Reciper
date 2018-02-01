@@ -1,4 +1,5 @@
 # Reciper
+[Het eind report van dit project](./REPORT.md)
 
 [Code design van de app](./DESIGN.md)
 
