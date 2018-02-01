@@ -1,6 +1,8 @@
 # Reciper
 [Het eind report van dit project](./REPORT.md)
+
 [Code design van de app](./DESIGN.md)
+
 [API werking](./docs/API.md)
 
 ## Probleem en oplossing
