@@ -54,20 +54,6 @@ class SharedWithHouseholdTableViewController: UITableViewController {
         }
         return cell
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return  self.household.userIDs[indexPath.row] == Auth.auth().currentUser?.uid ? false : true
-    }
- 
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.householdModel.removeUser(household, userID: self.household.userIDs[indexPath.row])
-        }
-    }
-    */
 
     // MARK: - Navigation
 

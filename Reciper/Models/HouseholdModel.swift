@@ -27,7 +27,6 @@ class HouseholdModel : FirebaseModel {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
                 self.user = user
-                
                 self.userRef = self.db.reference(withPath: "users").child(self.user.uid).child("households")
             }
         }
@@ -45,20 +44,16 @@ class HouseholdModel : FirebaseModel {
         return houseHoldRef.key
     }
     
+    // Add user to a household
     func addUser(_ household: HouseholdEntity, userID: String) {
         self.ref.child(household.id!).child("users").child(userID).setValue(true)
         self.db.reference(withPath: "users").child(userID).child("households").child(household.id!).setValue(true)
     }
     
+    // Remove user from a household
     func removeUser(_ household: HouseholdEntity, userID: String) {
         self.ref.child(household.id!).child("users").child(userID).removeValue()
         self.db.reference(withPath: "users").child(userID).child("households").child(household.id!).removeValue()
-    }
-    
-    func removeHousehold(_ household: HouseholdEntity) {
-        if let id = household.id {
-            self.ref.child(id).removeValue()
-        }
     }
     
     func get(_ householdID: String, _ observe: ObserveOrOnce, with: @escaping (HouseholdEntity?) -> Void) -> FBObserver {
@@ -67,6 +62,7 @@ class HouseholdModel : FirebaseModel {
         }
     }
     
+    // Get all the households from the given string array
     func getMany(_ householdIDs: [String], with: @escaping ([HouseholdEntity]) -> Void) {
         var live = householdIDs.count
         var results: [HouseholdEntity] = []

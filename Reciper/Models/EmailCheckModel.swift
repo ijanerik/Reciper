@@ -23,6 +23,7 @@ class EmailCheckModel : FirebaseModel {
         self.ref.keepSynced(true)
     }
     
+    // Add email to emailcheck
     func setEmail() {
         if let email = self.userModel.user.email {
             self.ref.child(self.encodeEmail(email)).setValue(self.userModel.user.uid)
@@ -35,6 +36,7 @@ class EmailCheckModel : FirebaseModel {
         }
     }
     
+    // Secure email so you can store it as Firebase key
     func encodeEmail(_ email: String) -> String {
         return email.replacingOccurrences(of: ".", with: "%20")
     }

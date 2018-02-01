@@ -15,7 +15,6 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
     }
 
-    
     @IBAction func pressedLogout(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
@@ -25,6 +24,4 @@ class SettingsTableViewController: UITableViewController {
             print ("Error signing out: %@", signOutError)
         }
     }
-    
-
 }

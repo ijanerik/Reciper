@@ -56,17 +56,20 @@ class RecipeResultsTableViewController: UITableViewController {
     func findAndUpdateResults(_ searchTerm : String, moreLoading: Bool = false) {
         let startResults = (moreLoading == true) ? self.recipes.count : 0
         
+        // Stop updating if you are already loading data and you want more data.
+        // If you want new data you can still override the loading old data.
         guard self.doLoadMore == false || moreLoading == false else {
             return
         }
+        self.doLoadMore = true
         
-        if moreLoading == true {
-            self.doLoadMore = true
-        } else {
+        // You know there is new data when loading a new search result
+        if moreLoading == false {
             self.shouldLoadMore = true
         }
         
-        guard self.shouldLoadMore == true else {
+        // If no should load more then stop finding new results.
+        if self.shouldLoadMore == false {
             return
         }
         
@@ -87,10 +90,7 @@ class RecipeResultsTableViewController: UITableViewController {
                     
                     self.tableView.reloadData()
                     
-                    if self.doLoadMore == true {
-                        self.doLoadMore = false
-                    }
-                    
+                    self.doLoadMore = false
                     self.latestSearch = searchTerm
                 }
             }

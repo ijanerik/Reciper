@@ -9,9 +9,6 @@
 import UIKit
 
 class AddGroceriesFromRecipeTableViewController: UITableViewController {
-
-    
-    
     var planner: PlannerEntity!
     var fullRecipe: FullRecipeEntity?
     
@@ -76,10 +73,10 @@ class AddGroceriesFromRecipeTableViewController: UITableViewController {
                     let grocery = GroceryEntity(id: nil,
                                                 title: ingredient.label,
                                                 plannerID: planner.id,
-                                                planner: planner,
                                                 recipeID: planner.recipe!.id,
-                                                recipe: planner.recipe!,
-                                                done: false)
+                                                done: false,
+                                                planner: planner,
+                                                recipe: planner.recipe!)
                     _ = groceriesModel.add(grocery)
                 }
             }

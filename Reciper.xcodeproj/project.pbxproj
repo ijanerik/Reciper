@@ -35,7 +35,6 @@
 		BCE819B1201F3D2D001C3FCB /* simpleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE819B0201F3D2D001C3FCB /* simpleLoader.swift */; };
 		BCE819B3201F4EDD001C3FCB /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE819B2201F4EDD001C3FCB /* AddButton.swift */; };
 		BCE819B5201F681B001C3FCB /* FavoriteRecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE819B4201F681B001C3FCB /* FavoriteRecipeViewCell.swift */; };
-		BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */; };
 		BCEE56A820077B95000D6B5F /* RecipeResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */; };
 		BCEE56AE20078218000D6B5F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */; };
 		BCEE56B0200783CD000D6B5F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */; };
@@ -90,7 +89,6 @@
 		BCE819B0201F3D2D001C3FCB /* simpleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simpleLoader.swift; sourceTree = "<group>"; };
 		BCE819B2201F4EDD001C3FCB /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		BCE819B4201F681B001C3FCB /* FavoriteRecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewCell.swift; sourceTree = "<group>"; };
-		BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewController.swift; sourceTree = "<group>"; };
 		BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResultsTableViewController.swift; sourceTree = "<group>"; };
 		BCEE56AD20078217000D6B5F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				BC1869FC200A91E9002E0E76 /* FavoritesTableViewController.swift */,
-				BCEE56A320077B40000D6B5F /* RecipeSearchViewController.swift */,
 				BCEE56A720077B95000D6B5F /* RecipeResultsTableViewController.swift */,
 				BCEE56BD20079D15000D6B5F /* RecipeViewController.swift */,
 			);
@@ -431,7 +428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCEE56BA200791BE000D6B5F /* FullRecipeEntity.swift in Sources */,
-				BCEE56A420077B40000D6B5F /* RecipeSearchViewController.swift in Sources */,
 				BC186A16200E0EE4002E0E76 /* PlannerModel.swift in Sources */,
 				BCA0D2A520064969007EE11A /* LoginViewController.swift in Sources */,
 				BC5ACFE62019F9CA00CC3653 /* EmailCheckModel.swift in Sources */,

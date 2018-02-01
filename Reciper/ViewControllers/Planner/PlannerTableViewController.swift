@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelegate {
+class PlannerTableViewController: UITableViewController {
     
     let dateFormatter = DateFormatter()
     let dateFormatterSmall = DateFormatter()
@@ -30,22 +30,29 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         dateFormatter.dateStyle = .long
         dateFormatter.locale = Locale(identifier: "nl_NL")
         dateFormatterSmall.dateFormat = "dd-MM-yyyy"
         
-        tableView.showsVerticalScrollIndicator = false
-        
-        loadMoreDays()
-        
         plannerModel = PlannerModel.shared
         userModel = UserModel.shared
         
+        tableView.showsVerticalScrollIndicator = false
+        loadMoreDays()
+        
+        initObserver()
+    }
+    
+    // Initialize the observer who watches all the data from the planner in Firebase
+    func initObserver() {
+        // Reload observer if household changes.
         userModel.addHouseholdChanger { (householdID) in
+            
+            // Show loader indicator
             self.indicator = SimpleLoader(self)
             self.indicator.start()
             self.results = [:]
+            
             self.plannerObserverHandler?.unobserve()
             self.tableView.reloadData()
             
@@ -57,10 +64,12 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         }
     }
 
+    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return daysLoaded
     }
 
+    // Amount of recipes per day + 1 add button
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let results = self.results[self.dateFormatterSmall.string(from: self.days[section])] {
             return results.count + 1
@@ -69,6 +78,7 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         }
     }
     
+    // Show date in header
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return dateFormatter.string(from: days[section])
     }
@@ -119,7 +129,7 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
     }
 
     
-    // Override to support conditional editing of the table view.
+    // Remove possible cells except the add buttons
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
             if indexPath.row < results.count {
@@ -132,8 +142,6 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         }
     }
 
-    
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
@@ -157,7 +165,6 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         }
     }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "ToSingleRecipe") {
             let recipeController = segue.destination as! RecipeViewController
@@ -176,15 +183,17 @@ class PlannerTableViewController: UITableViewController, PlannerRecipeCellDelega
         }
     }
     
+    
+    @IBAction func unwindToPlanner(segue: UIStoryboardSegue) { }
+
+
+}
+
+extension PlannerTableViewController: PlannerRecipeCellDelegate {
     func addToGroceriesTapped(sender: PlannerRecipeTableViewCell) {
         if let indexPath = tableView.indexPath(for: sender),
             let results = self.results[self.dateFormatterSmall.string(from: self.days[indexPath.section])] {
             performSegue(withIdentifier: "AddRecipeToGroceries", sender: results[indexPath.row])
         }
     }
-    
-    
-    @IBAction func unwindToPlanner(segue: UIStoryboardSegue) { }
-
-
 }

@@ -20,6 +20,11 @@ class AllHouseholdsTableViewController: UITableViewController {
         super.viewDidLoad()
         userModel = UserModel.shared
         
+        initObserver()
+        initUI()
+    }
+    
+    func initObserver() {
         userModel.addHouseholdChanger { (householdID) in
             self.householdObserver?.unobserve()
             
@@ -31,8 +36,6 @@ class AllHouseholdsTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        
-        initUI()
     }
     
     func initUI() {
@@ -56,24 +59,6 @@ class AllHouseholdsTableViewController: UITableViewController {
 
         return cell
     }
-    
-    /*
-    // MARK: - Deleting cells
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        var household = self.results[indexPath.row]
-        if household.userIDs.count == 1 && household.userIDs[0] == Auth.auth().currentUser?.uid {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            var household = self.results[indexPath.row]
-        }
-    }
-    */
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

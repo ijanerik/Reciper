@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesTableViewController: UITableViewController, FavoriteRecipeCellDelegate {
+class FavoritesTableViewController: UITableViewController {
     
     var favoriteModel: FavoriteModel!
     var recipeModel: RecipeModel!
@@ -32,6 +32,11 @@ class FavoritesTableViewController: UITableViewController, FavoriteRecipeCellDel
         
         indicator = SimpleLoader(self)
         
+        initObserver()
+    }
+    
+    // Initialize the observer who watches all the data from the groceries in Firebase
+    func initObserver() {
         userModel.addHouseholdChanger { (_) in
             self.recipes = []
             self.indicator.start()
@@ -45,24 +50,8 @@ class FavoritesTableViewController: UITableViewController, FavoriteRecipeCellDel
             }
         }
     }
-    
-    func addToPlannerTapped(sender: FavoriteRecipeTableViewCell) {
-        if let indexPath = tableView.indexPath(for: sender) {
-            if let planningDate = self.planningDate {
-                let planner = PlannerEntity(id: nil,
-                                            date: planningDate,
-                                            recipeID: self.recipes[indexPath.row].id,
-                                            recipe: nil)
-                let _ = self.plannerModel.add(planner)
-                self.performSegue(withIdentifier: "unwindToPlanner", sender: self)
-            } else {
-                performSegue(withIdentifier: "AddToPlanner", sender: recipes[indexPath.row])
-            }
-        }
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.recipes.count
     }
 
@@ -88,7 +77,6 @@ class FavoritesTableViewController: UITableViewController, FavoriteRecipeCellDel
 
         return newCell
     }
-
     
     
     // Override to support conditional editing of the table view.
@@ -121,4 +109,21 @@ class FavoritesTableViewController: UITableViewController, FavoriteRecipeCellDel
         }
     }
 
+}
+
+extension FavoritesTableViewController: FavoriteRecipeCellDelegate {
+    func addToPlannerTapped(sender: FavoriteRecipeTableViewCell) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            if let planningDate = self.planningDate {
+                let planner = PlannerEntity(id: nil,
+                                            date: planningDate,
+                                            recipeID: self.recipes[indexPath.row].id,
+                                            recipe: nil)
+                let _ = self.plannerModel.add(planner)
+                self.performSegue(withIdentifier: "unwindToPlanner", sender: self)
+            } else {
+                performSegue(withIdentifier: "AddToPlanner", sender: recipes[indexPath.row])
+            }
+        }
+    }
 }

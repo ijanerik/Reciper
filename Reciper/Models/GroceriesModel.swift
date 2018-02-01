@@ -56,14 +56,6 @@ class GroceriesModel : FirebaseModel {
         }
     }
     
-    /*
-    func get(_ plannerID: String, _ observe: ObserveOrOnce, with: @escaping (PlannerEntity?) -> Void) {
-        _ = self.check(self.ref.child(userModel.currentHouseholdID()!).child(plannerID), observe) { (plannerSnap) in
-            with(self.plannerFromSnapshot(plannerSnap))
-        }
-    }
-     */
-    
     func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String:[GroceryEntity]])->()) -> FBObserver {
         return self.check(self.ref.child(userModel.currentHouseholdID()!), observe) { (results) in
             let allGroceries = Array((results.value as? [String:Any] ?? [:]).keys)
@@ -98,10 +90,10 @@ class GroceriesModel : FirebaseModel {
         return GroceryEntity(id: dict["id"] as? String,
                              title: dict["title"] as! String,
                              plannerID: dict["planner"] as? String,
-                             planner: nil,
                              recipeID: dict["recipe"] as? String,
-                             recipe: nil,
-                             done: dict["done"] as! Bool
+                             done: dict["done"] as! Bool,
+                             planner: nil,
+                             recipe: nil
         )
         
     }

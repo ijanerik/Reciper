@@ -28,8 +28,6 @@ class NewHouseholdViewController: UIViewController {
             let _ = self.householdModel.addHousehold(household)
             
             self.navigationController?.popViewController(animated: true)
-        } else {
-            // @TODO animation on error
         }
     }
 

@@ -13,7 +13,6 @@ class FirebaseModel {
     enum ObserveOrOnce {
         case observe
         case once
-        case observeWithCache // @TODO Give initial call with cached data
     }
     
     let db = Database.database()
@@ -23,7 +22,7 @@ class FirebaseModel {
                _ observe: ObserveOrOnce = .once,
                with: @escaping (DataSnapshot)->()) -> FBObserver {
         var handler: UInt = 0
-        if observe == .observe || observe == .observeWithCache {
+        if observe == .observe {
             handler = ref.observe(.value, with: with)
         } else {
             ref.observeSingleEvent(of: .value, with: with)

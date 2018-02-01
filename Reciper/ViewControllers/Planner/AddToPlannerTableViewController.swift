@@ -63,6 +63,7 @@ class AddToPlannerTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    // Get all the next 7 days date classes
     func get7NextDays() -> [Date] {
         var ret: [Date] = []
         let day = 60*60*24
@@ -119,6 +120,7 @@ class AddToPlannerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
+        // Update date when cell selected
         if row < 7 {
             currentDate = self.dates[row]
             customDate = false
@@ -133,6 +135,7 @@ class AddToPlannerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
         
+        // Show custom date picker if custom date selector is selected.
         if row == 8 {
             if customDate == true {
                 return 200

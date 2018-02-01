@@ -19,7 +19,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initUI()
         
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -37,12 +36,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     // MARK: - Buttons to sign in Google/Facebook
-    
     func initUI() {
         self.googleButton.layer.cornerRadius = 8
         self.facebookButton.layer.cornerRadius = 8
     }
     
+    // See AppDelegate for more Google Logic
     @IBAction func pressedGoogle(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn()
     }

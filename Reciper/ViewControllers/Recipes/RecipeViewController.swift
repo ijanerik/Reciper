@@ -48,7 +48,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadAndDisplayRecipe()
+        loadFullrecipe()
+        loadImage()
         updateUI()
         
         ingredientTable.delegate = self
@@ -61,17 +62,12 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func initUI() {
-        // No big title
-        navigationItem.largeTitleDisplayMode = .never
-        
-        // Add favorite button
         self.favoriteButton =  UIBarButtonItem(image: UIImage(named:"heart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(pressedFavoriteButton(sender:)))
         navigationItem.rightBarButtonItem = favoriteButton
     }
-    
-    func loadAndDisplayRecipe() {
-        self.RecipeAPI.getRecipe(recipeID: self.smallRecipe.id,
-                                 completion: { (fullRecipe) in
+
+    func loadFullrecipe() {
+        self.RecipeAPI.getRecipe(recipeID: self.smallRecipe.id, completion: { (fullRecipe) in
             DispatchQueue.main.async {
                 if let recipe = fullRecipe {
                     self.fullRecipe = recipe
@@ -82,25 +78,40 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         })
-        
-        // @todo nicer coding and maybe an nice "no recipe image" image
+    }
+    
+    func loadImage() {
         if let recipeImage = self.smallRecipe.image {
             self.RecipeAPI.fetchImage(url: recipeImage, completion: { (image) in
                 DispatchQueue.main.async {
                     guard let image = image else {
-                        self.recipeImage.isHidden = true
                         return
                     }
-                    self.recipeImage.isHidden = false
                     self.recipeImage.image = image
                 }
             })
-        } else {
-            self.recipeImage.isHidden = false
         }
     }
     
     func updateUI() {
+        updateText()
+        
+        favoriteButton.tintColor = UIColor.red
+        if isFavorite == true {
+             favoriteButton.image = UIImage(named: "icons8-heart-filled-50")
+        } else {
+            favoriteButton.image = UIImage(named: "icons8-heart-50")
+        }
+        
+        // Update heights of preperations and ingredients
+        self.preperationHeight.constant = 0
+        self.preperationHeight.constant = preperationsText.contentSize.height
+        ingredientTable.reloadData()
+        self.ingredientsHeight.constant = 0
+        self.ingredientsHeight.constant = ingredientTable.contentSize.height
+    }
+    
+    func updateText() {
         if let fullRecipe = self.fullRecipe {
             titleLabel.text = fullRecipe.title
             timeLabel.text =  "\(fullRecipe.time) minuten"
@@ -112,20 +123,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             timeLabel.text =  "\(smallRecipe.time) minuten"
             portionsLabel.text = smallRecipe.servings
         }
-        
-        favoriteButton.tintColor = UIColor.red
-        if isFavorite == true {
-             favoriteButton.image = UIImage(named: "icons8-heart-filled-50")
-        } else {
-            favoriteButton.image = UIImage(named: "icons8-heart-50")
-        }
-        
-        self.preperationHeight.constant = 0
-        self.preperationHeight.constant = preperationsText.contentSize.height
-        
-        ingredientTable.reloadData()
-        self.ingredientsHeight.constant = 0
-        self.ingredientsHeight.constant = ingredientTable.contentSize.height
     }
     
     @objc func pressedFavoriteButton(sender: UIBarButtonItem) {
@@ -143,6 +140,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func pressedPlanning(_ sender: UIButton) {
         // Inplannen van het recept
+        // Als planningdate is gegeven meteen terug naar planner
         if let planningDate = self.planningDate {
             let planner = PlannerEntity(id: nil, date: planningDate, recipeID: smallRecipe.id, recipe: nil)
             let _ = self.plannerModel.add(planner)
@@ -156,8 +154,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Table View
     // Give amount of recipes as amount of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Asked how much")
-        print(self.fullRecipe?.ingredients.count ?? 0)
         return self.fullRecipe?.ingredients.count ?? 0
     }
     

@@ -40,6 +40,7 @@ class UserModel : FirebaseModel {
         }
     }
     
+    // Call this function when the users login to check if this is his first signup.
     func userInit() {
         _ = self.allHouseholdIDs(.once) { (households) in
             guard self.currentHouseholdID() == nil else {
@@ -89,6 +90,7 @@ class UserModel : FirebaseModel {
         }
     }
     
+    // Add a listener to the household changer listener also first call the function.
     func addHouseholdChanger(_ with: @escaping (String) -> ()) {
         if let id = self.currentHouseholdID() {
             with(id)

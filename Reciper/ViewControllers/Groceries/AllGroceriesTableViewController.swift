@@ -30,7 +30,6 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         checkInitSystem()
     }
     
@@ -39,6 +38,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     // Need to load once, but after the user logged in
+    // Fix to prevent error in loading Groceries without being logged in.
     func checkInitSystem() {
         guard loaded == false, Auth.auth().currentUser != nil else {
             return
@@ -48,6 +48,13 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
         userModel = UserModel.shared
         recipeModel = RecipeModel.shared
         
+        initObserver()
+        
+        loaded = true
+    }
+    
+    // Initialize the observer who watches all the data from the groceries in Firebase
+    func initObserver() {
         userModel.addHouseholdChanger { (householdID) in
             self.groceriesObserverHandler?.unobserve()
             
@@ -73,12 +80,9 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
                 self.tableView.reloadData()
             }
         }
-        
-        loaded = true
     }
     
     // MARK: - Add Grocery label
-    
     @IBAction func startAddingGrocery(_ sender: UITextField) {
         sender.delegate = self
         sender.returnKeyType = .done
@@ -96,10 +100,10 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
             let grocery = GroceryEntity(id: nil,
                                         title: textField.text!,
                                         plannerID: nil,
-                                        planner: nil,
                                         recipeID: nil,
-                                        recipe: nil,
-                                        done: false
+                                        done: false,
+                                        planner: nil,
+                                        recipe: nil
             )
         
             _ = self.groceriesModel.add(grocery)
@@ -109,14 +113,14 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return groceries.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Show on top your own groceries else the groceries from your planner
         if section == 0 {
-            return self.groceries[""]!.count + 1 // (Toevoegen button?)
+            return self.groceries[""]!.count + 1 // Toevoeg textfield
         } else {
             let sectionName = getSectionNameByIndex(section)
             return self.groceries[sectionName]?.count ?? 0
@@ -124,6 +128,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // Show on top your own groceries else the groceries from your planner
         if section == 0 {
             return "Eigen boodschappen"
         } else {
@@ -133,6 +138,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     func getSectionNameByIndex(_ sectionIndex: Int) -> String {
+        // Show on top your own groceries else the groceries from your planner
         if sectionIndex == 0 {
             return ""
         } else {
@@ -146,25 +152,25 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionName = self.getSectionNameByIndex(indexPath.section)
         if sectionName == "" && groceries[""]?.count ?? 0 <= indexPath.row {
-            tryAddingNewItem?.becomeFirstResponder()
             return tableView.dequeueReusableCell(withIdentifier: "AddGroceryCell", for: indexPath)
-        }
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroceryCell", for: indexPath)
-        guard let grocery = self.groceries[sectionName]?[indexPath.row] else {
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroceryCell", for: indexPath)
+            // Check if the grocery exists.
+            guard let grocery = self.groceries[sectionName]?[indexPath.row] else {
+                return cell
+            }
+            
+            // Make the text. If the grocery is done add a crossed line through the text.
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: grocery.title)
+            if grocery.done == true {
+                attributeString.addAttribute(.strikethroughStyle,
+                                         value: 2,
+                                         range: NSMakeRange(0, attributeString.length))
+            }
+            
+            cell.textLabel?.attributedText = attributeString
             return cell
         }
-        
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: grocery.title)
-        if grocery.done == true {
-            attributeString.addAttribute(.strikethroughStyle,
-                                     value: 2,
-                                     range: NSMakeRange(0, attributeString.length))
-        }
-        
-        cell.textLabel?.attributedText = attributeString
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -178,12 +184,14 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
             return
         }
         
+        // When grocery selected toggle done/undone
         var newGrocery = grocery
         newGrocery.done = !newGrocery.done
         self.groceriesModel.update(newGrocery)
     }
     
     @IBAction func pressedCleaning(_ sender: UIBarButtonItem) {
+        // Remove all the groceries when cleaning your screen.
         for (_, grocies) in groceries {
             for grocery in grocies {
                 if grocery.done == true {
@@ -195,7 +203,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
     
 
     
-    // Everything for deleting cells
+    // MARK: - Deleting cells
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let sectionName = self.getSectionNameByIndex(indexPath.section)
         if sectionName == "" && groceries[""]?.count ?? 0 <= indexPath.row {

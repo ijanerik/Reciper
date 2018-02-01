@@ -12,15 +12,27 @@ class CurrentHouseholdTableViewController: UITableViewController {
 
     var userModel: UserModel!
     var results: [HouseholdEntity] = []
+    var householdObserver: FBObserver!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initObserver()
 
         userModel = UserModel.shared
-        
-        _ = userModel.allHouseholds { (results) in
-            self.results = results
+    }
+    
+    func initObserver() {
+        userModel.addHouseholdChanger { (householdID) in
+            self.householdObserver?.unobserve()
+            
+            self.results = []
             self.tableView.reloadData()
+            
+            self.householdObserver = self.userModel.allHouseholds(.observe) { (results) in
+                self.results = results
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -31,11 +43,9 @@ class CurrentHouseholdTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.results.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HouseholdCell", for: indexPath)
