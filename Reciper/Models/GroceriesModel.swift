@@ -69,11 +69,11 @@ class GroceriesModel : FirebaseModel {
                         groceries[""]!.append(grocery)
                         continue
                     }
+                    
                     if groceries[plannerID] == nil {
-                        groceries[plannerID] = [grocery]
-                    } else {
-                        groceries[plannerID]!.append(grocery)
+                        groceries[plannerID] = []
                     }
+                    groceries[plannerID]!.append(grocery)
                 }
             }
             
