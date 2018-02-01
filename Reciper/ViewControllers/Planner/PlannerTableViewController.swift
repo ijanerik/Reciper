@@ -168,10 +168,8 @@ class PlannerTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "ToSingleRecipe") {
             let recipeController = segue.destination as! RecipeViewController
-            if let results = self.results[self.dateFormatterSmall.string(from: self.days[tableView.indexPathForSelectedRow!.section])] {
-                if tableView.indexPathForSelectedRow!.row < results.count {
+            if let results = self.results[self.dateFormatterSmall.string(from: self.days[tableView.indexPathForSelectedRow!.section])], tableView.indexPathForSelectedRow!.row < results.count {
                     recipeController.smallRecipe = results[tableView.indexPathForSelectedRow!.row].recipe!
-                }
             }
         } else if segue.identifier == "AddRecipeToGroceries" {
             let addGroceriesController = segue.destination as! AddGroceriesFromRecipeTableViewController
