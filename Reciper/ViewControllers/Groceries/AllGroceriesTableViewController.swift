@@ -162,7 +162,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
             
             // Make the text. If the grocery is done add a crossed line through the text.
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: grocery.title)
-            if grocery.done == true {
+            if grocery.done {
                 attributeString.addAttribute(.strikethroughStyle,
                                          value: 2,
                                          range: NSMakeRange(0, attributeString.length))
@@ -194,7 +194,7 @@ class AllGroceriesTableViewController: UITableViewController, UITextFieldDelegat
         // Remove all the groceries when cleaning your screen.
         for (_, grocies) in groceries {
             for grocery in grocies {
-                if grocery.done == true {
+                if grocery.done {
                     self.groceriesModel.remove(grocery)
                 }
             }

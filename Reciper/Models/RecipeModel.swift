@@ -2,6 +2,8 @@
 //  RecipeModel.swift
 //  Reciper
 //
+//  The RecipeModel communicates with Firebase to get all the Firebase recipes
+//
 //  Created by Jan Erik van Woerden on 13-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //
@@ -17,14 +19,17 @@ class RecipeModel : FirebaseModel {
         self.ref = self.db.reference(withPath: "recipes")
     }
     
+    // Add recipe to FB
     func add(_ recipe: SmallRecipeEntity) {
         ref.child(recipe.id).setValue(self.recipeToSnapshot(recipe))
     }
     
+    // Remove recipe to FB
     func remove(_ recipe: SmallRecipeEntity) {
         self.ref.child(recipe.id).removeValue()
     }
     
+    // Get recipe from FB
     func get(_ recipeID: String,
              _ observe: ObserveOrOnce = .once,
              with: @escaping (SmallRecipeEntity?) -> Void) -> FBObserver {
@@ -33,6 +38,7 @@ class RecipeModel : FirebaseModel {
         }
     }
     
+    // Get multiple recipes based on recipeIDs
     func getMany(_ recipeIDs: [String], with: @escaping ([SmallRecipeEntity]) -> Void) {
         var live = recipeIDs.count
         var results: [SmallRecipeEntity] = []

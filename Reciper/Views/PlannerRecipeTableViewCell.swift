@@ -2,6 +2,8 @@
 //  PlannerRecipeTableViewCell.swift
 //  Reciper
 //
+// A single recipe cell in the planner with a "Add to groceries" button
+//
 //  Created by Jan Erik van Woerden on 22-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //

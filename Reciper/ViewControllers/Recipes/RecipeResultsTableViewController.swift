@@ -55,12 +55,12 @@ class RecipeResultsTableViewController: UITableViewController {
     
     
     func findAndUpdateResults(_ searchTerm : String, moreLoading: Bool = false) {
-        let startResults = (moreLoading == true) ? self.recipes.count : 0
+        let startResults = moreLoading ? self.recipes.count : 0
         
         
         // If you want to load more and you know there are no results more
         // or you are already loading new data. Stop loading new data
-        if moreLoading == true && (self.shouldLoadMore == false || self.doLoadMore == true) {
+        if moreLoading && (!self.shouldLoadMore || self.doLoadMore) {
             return
         }
         

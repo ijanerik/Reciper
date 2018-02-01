@@ -52,7 +52,7 @@ class AddGroceriesFromRecipeTableViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
             cell.textLabel?.text = self.fullRecipe!.ingredients[indexPath.row - 1].label
-            if self.selecteds[indexPath.row - 1] == true {
+            if self.selecteds[indexPath.row - 1] {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none

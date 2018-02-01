@@ -23,6 +23,10 @@ class FavoriteModel : FirebaseModel {
         self.ref = self.db.reference(withPath: "favorites").child(user.uid)
         self.ref.keepSynced(true)
         
+        initObserver()
+    }
+    
+    func initObserver() {
         // So if you login with another account you still can loggin
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
@@ -42,6 +46,7 @@ class FavoriteModel : FirebaseModel {
         self.ref.child(recipe.id).removeValue()
     }
     
+    // Give all the favorite recipe ID's
     func all(_ observe: ObserveOrOnce = .once, with: @escaping ([String])->()) -> FBObserver {
         return self.check(self.ref, observe) { (results) in
             let favorites = results.value as? [String: Bool] ?? [:]
@@ -49,15 +54,17 @@ class FavoriteModel : FirebaseModel {
         }
     }
     
+    // Give all the favorite recipes as structs of SmallRecipeEntity
     func allRecipes(_ observe: ObserveOrOnce = .once, with: @escaping ([SmallRecipeEntity])->()) -> FBObserver {
         return self.all(observe) { (results) in
             self.recipeModel.getMany(results, with: with)
         }
     }
     
+    // Check if a Recipe is a favorite or not
     func get(_ recipe: SmallRecipeEntity, _ observe: ObserveOrOnce = .once, with: @escaping (Bool)->()) -> FBObserver {
         return self.check(self.ref.child(recipe.id), observe) { (results) in
-            if let bool = results.value as? Bool, bool == true {
+            if let bool = results.value as? Bool, bool {
                 with(true)
             } else {
                 with(false)

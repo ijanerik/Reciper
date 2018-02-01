@@ -2,6 +2,8 @@
 //  RecipeAPIModel.swift
 //  Reciper
 //
+//  This Model gives an API to easily call with the web API with all the recipes
+//
 //  Created by Jan Erik van Woerden on 11-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //

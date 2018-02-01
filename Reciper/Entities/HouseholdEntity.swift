@@ -2,6 +2,8 @@
 //  PlannerEntity.swift
 //  Reciper
 //
+// The struct holds all the household information
+//
 //  Created by Jan Erik van Woerden on 11-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //

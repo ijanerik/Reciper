@@ -2,6 +2,8 @@
 //  RecipesResultsTableViewCell.swift
 //  Reciper
 //
+//  A custom recipe result cell with big photo
+//
 //  Created by Jan Erik van Woerden on 24-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //

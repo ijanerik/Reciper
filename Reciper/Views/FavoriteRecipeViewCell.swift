@@ -2,6 +2,8 @@
 //  PlannerRecipeTableViewCell.swift
 //  Reciper
 //
+//  A custom recipe cell for all the favorites and button to add to planner.
+//
 //  Created by Jan Erik van Woerden on 22-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //

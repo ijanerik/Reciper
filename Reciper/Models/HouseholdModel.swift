@@ -56,6 +56,7 @@ class HouseholdModel : FirebaseModel {
         self.db.reference(withPath: "users").child(userID).child("households").child(household.id!).removeValue()
     }
     
+    // Get a household
     func get(_ householdID: String, _ observe: ObserveOrOnce, with: @escaping (HouseholdEntity?) -> Void) -> FBObserver {
         return self.check(self.ref.child(householdID), observe) { (householdSnap) in
             with(self.householdFromSnapshot(householdSnap))

@@ -2,6 +2,8 @@
 //  FirebaseModel.swift
 //  Reciper
 //
+// This a basic class that helps making Model classes easier with some helpfunctions.
+//
 //  Created by Jan Erik van Woerden on 13-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //

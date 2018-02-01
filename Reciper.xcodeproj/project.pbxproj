@@ -206,6 +206,7 @@
 				BCEE56C32008B206000D6B5F /* Views */,
 				BCA0D2A020064482007EE11A /* Entities */,
 				BCA0D29F20064469007EE11A /* Models */,
+				BC9FB7FA20177BE500152AFA /* Library */,
 				BCA0D29D20064459007EE11A /* ViewControllers */,
 			);
 			path = Reciper;
@@ -231,7 +232,6 @@
 				BC1869FE200A9202002E0E76 /* Settings */,
 				BCA0D2A420064969007EE11A /* LoginViewController.swift */,
 				BCEE56AF200783CD000D6B5F /* MainTabBarViewController.swift */,
-				BC9FB7FA20177BE500152AFA /* Library */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

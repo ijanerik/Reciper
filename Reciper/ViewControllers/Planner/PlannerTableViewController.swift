@@ -2,6 +2,8 @@
 //  PlannerTableViewController.swift
 //  Reciper
 //
+//  ViewController who displays all the planned recipes
+//
 //  Created by Jan Erik van Woerden on 15-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //
@@ -37,10 +39,10 @@ class PlannerTableViewController: UITableViewController {
         plannerModel = PlannerModel.shared
         userModel = UserModel.shared
         
+        initObserver()
+        
         tableView.showsVerticalScrollIndicator = false
         loadMoreDays()
-        
-        initObserver()
     }
     
     // Initialize the observer who watches all the data from the planner in Firebase

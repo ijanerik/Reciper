@@ -16,10 +16,8 @@ class CurrentHouseholdTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initObserver()
-
         userModel = UserModel.shared
+        initObserver()
     }
     
     func initObserver() {

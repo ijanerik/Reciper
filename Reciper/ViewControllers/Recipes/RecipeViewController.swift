@@ -97,7 +97,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         updateText()
         
         favoriteButton.tintColor = UIColor.red
-        if isFavorite == true {
+        if isFavorite {
              favoriteButton.image = UIImage(named: "icons8-heart-filled-50")
         } else {
             favoriteButton.image = UIImage(named: "icons8-heart-50")

@@ -70,10 +70,13 @@ class UserModel : FirebaseModel {
         }
     }
     
+    // Get current household of currently loggedin user
     func currentHouseholdID() -> String? {
         return UserDefaults.standard.string(forKey:"currentHousehold")
     }
     
+    // Set current household of loggedin user.
+    // Also call the householdChanger
     func setCurrentHousehold(_ householdID: String?) {
         if let id = householdID {
             UserDefaults.standard.set(id, forKey:"currentHousehold")
@@ -81,6 +84,7 @@ class UserModel : FirebaseModel {
         }
     }
     
+    // Get all household ID's of currently loggedin user
     func allHouseholdIDs(_ observe: ObserveOrOnce = .once, with: @escaping ([String]) -> ()) -> FBObserver {
         return self.check(self.ref.child("households"), observe) { (results) in
             let households = results.value as? [String: Bool] ?? [:]
@@ -88,6 +92,7 @@ class UserModel : FirebaseModel {
         }
     }
     
+    // Get all household structs of loggedin user
     func allHouseholds(_ observe: ObserveOrOnce = .once, with: @escaping ([HouseholdEntity]) -> ()) -> FBObserver {
         return self.allHouseholdIDs(observe) { (results) in
             self.householdModel.getMany(results, with: with)

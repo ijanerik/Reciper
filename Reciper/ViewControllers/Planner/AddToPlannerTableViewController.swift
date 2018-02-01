@@ -56,7 +56,7 @@ class AddToPlannerTableViewController: UITableViewController {
     @IBAction func pickerValueChanged(_ sender: UIDatePicker) {
         datePickerDate = sender.date
         
-        if customDate == true {
+        if customDate {
             currentDate = Calendar.current.startOfDay(for: datePickerDate).addingTimeInterval(TimeInterval(0))
         }
         
@@ -86,7 +86,7 @@ class AddToPlannerTableViewController: UITableViewController {
             let dateString = dateFormatter.string(from: datePickerDate)
             cell.textLabel?.text = "Aangepast (\(dateString))"
             
-            if customDate == true {
+            if customDate {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
@@ -137,7 +137,7 @@ class AddToPlannerTableViewController: UITableViewController {
         
         // Show custom date picker if custom date selector is selected.
         if row == 8 {
-            if customDate == true {
+            if customDate {
                 return 200
             } else {
                 return 0

@@ -2,6 +2,8 @@
 //  PlannerEntity.swift
 //  Reciper
 //
+//  This struct holds all the information of a planner item with recipe and date
+//
 //  Created by Jan Erik van Woerden on 11-01-18.
 //  Copyright © 2018 Jan Erik van Woerden. All rights reserved.
 //
