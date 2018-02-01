@@ -33,6 +33,7 @@ class AddUserToHouseholdViewController: UIViewController {
         inputField.becomeFirstResponder()
     }
     
+    // When input field value changed reset to check
     @IBAction func valueDidChange(_ sender: Any) {
         resetCheckState()
     }
@@ -67,16 +68,5 @@ class AddUserToHouseholdViewController: UIViewController {
             doSearch = true
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

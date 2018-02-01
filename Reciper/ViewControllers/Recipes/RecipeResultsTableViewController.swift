@@ -29,6 +29,7 @@ class RecipeResultsTableViewController: UITableViewController {
 
         indicator = SimpleLoader(self)
         indicator.start()
+        tableView.showsVerticalScrollIndicator = false
         
         initSearchBar()
         
@@ -56,22 +57,18 @@ class RecipeResultsTableViewController: UITableViewController {
     func findAndUpdateResults(_ searchTerm : String, moreLoading: Bool = false) {
         let startResults = (moreLoading == true) ? self.recipes.count : 0
         
-        // Stop updating if you are already loading data and you want more data.
-        // If you want new data you can still override the loading old data.
-        guard self.doLoadMore == false || moreLoading == false else {
+        
+        // If you want to load more and you know there are no results more
+        // or you are already loading new data. Stop loading new data
+        if moreLoading == true && (self.shouldLoadMore == false || self.doLoadMore == true) {
             return
         }
+        
+        // So there should be more loaded
+        self.shouldLoadMore = true
+        
+        // And yes you are now loading data
         self.doLoadMore = true
-        
-        // You know there is new data when loading a new search result
-        if moreLoading == false {
-            self.shouldLoadMore = true
-        }
-        
-        // If no should load more then stop finding new results.
-        if self.shouldLoadMore == false {
-            return
-        }
         
         self.RecipeAPI.search(searchTerm: searchTerm, startResults: startResults) { (results) in
             DispatchQueue.main.async {
