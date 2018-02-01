@@ -11,7 +11,15 @@ In een druk leven van een student is het vaak lastig om elke avond naar de winke
 Om dit probleem te verhelpen is het handig om een planning te maken en aan het begin van de week alle boodschappen in huis te halen. Hierbij kan een eenvoudige app helpen waar je een planning in kunt maken en op basis daarvan een boodschappenlijstje kunt samenstellen. Je kunt eenvoudig recepten toevoegen en deze aan je planning toevoegen en een boodschappenlijstje genereren op basis van de aankomende dagen.
 
 ## Visual
-![](docs/sketch.JPG)
+![](docs/screen1.PNG)
+
+![](docs/screen2.PNG)
+
+![](docs/screen3.PNG)
+
+![](docs/screen4.PNG)
+
+![](docs/screen5.jpg)
 
 ## Main features
 
